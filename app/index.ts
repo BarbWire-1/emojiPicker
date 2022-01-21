@@ -41,8 +41,8 @@ lastEmoji.onclick = () => {
   }
 };
 
-// writes directly from hex :)
-//emoji.text = String.fromCharCode(0x231A)
+//TODO check and understand the polyfill
+//TODO how to print hexcode in text-format??? like 0xblahblah?
 
 
 
