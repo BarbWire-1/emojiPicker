@@ -1,6 +1,10 @@
 <svg>
     <rect id="background" />
-    <circle cx="50%" cy="90%" r="10%" fill="orange" pointer-events="visible"/>
-    <text id="emoji" x="50%" y="50%" fontsize="100" text-anchor="middle" fill="white"
-       >EMOJI</text>
+    
+    <text id="nextEmoji" x="50%" y="100%-40" text-anchor="middle" fill="red"
+       font-family="System-Regular" font-size="40" pointer-events="visible">START</text>
+    <text id="emojiCode" x="50%" y="50%-140" font-size="30" text-anchor="middle" fill="white"
+       >EMOJICODE</text>
+    <text id="emoji" x="50%" y="50%+50" font-size="200" text-anchor="middle" fill="white" text-length="8"
+       >EMO</text>
 </svg>
