@@ -5,6 +5,6 @@
        font-family="System-Regular" font-size="40" pointer-events="visible">START</text>
     <text id="emojiCode" x="50%" y="50%-140" font-size="30" text-anchor="middle" fill="white"
        >EMOJICODE</text>
-    <text id="emoji" x="50%" y="50%+50" font-size="200" text-anchor="middle" fill="white" text-length="8"
+    <text id="emoji" x="50%" y="50%+50" font-size="100" text-anchor="middle" fill="white" text-length="8"
        >EMO</text>
 </svg>
