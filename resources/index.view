@@ -1,7 +1,9 @@
 <svg>
     <rect id="background" />
     
-    <text id="nextEmoji" x="50%" y="100%-40" text-anchor="middle" fill="red"
+    <text id="nextEmoji" x="50%" y="100%-40" text-anchor="start" fill="red"
+       font-family="System-Regular" font-size="40" pointer-events="visible">START</text>
+       <text id="lastEmoji" x="50%" y="100%-40" text-anchor="end" fill="red"
        font-family="System-Regular" font-size="40" pointer-events="visible">START</text>
     <text id="emojiCode" x="50%" y="50%-140" font-size="30" text-anchor="middle" fill="white"
        >EMOJICODE</text>
