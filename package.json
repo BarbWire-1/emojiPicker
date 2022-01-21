@@ -1,0 +1,66 @@
+{
+	"name": "emojipicker",
+	"version": "0.0.1",
+	"private": true,
+	"license": "UNLICENSED",
+	"scripts": {
+		"build": "fitbit-build",
+		"debug": "fitbit"
+	},
+	"devDependencies": {
+		"@fitbit/sdk": "^6.0.2",
+		"@fitbit/sdk-cli": "^1.7.3",
+		"fitbit-sdk-types": "^7.0.5"
+	},
+	"fitbit": {
+		"appUUID": "e95e0762-ff49-4c22-85d1-6c4f6cc8589b",
+		"appType": "app",
+		"appDisplayName": "EmojiPicker",
+		"iconFile": "resources/icon.png",
+		"wipeColor": "#8bc34a",
+		"requestedPermissions": [],
+		"buildTargets": [
+			"atlas",
+			"vulcan"
+		],
+		"i18n": {
+			"de-DE": {
+				"name": "EmojiPicker"
+			},
+			"en-US": {
+				"name": "EmojiPicker"
+			},
+			"es-ES": {
+				"name": "EmojiPicker"
+			},
+			"fr-FR": {
+				"name": "EmojiPicker"
+			},
+			"it-IT": {
+				"name": "EmojiPicker"
+			},
+			"ja-JP": {
+				"name": "EmojiPicker"
+			},
+			"ko-KR": {
+				"name": "EmojiPicker"
+			},
+			"nl-NL": {
+				"name": "EmojiPicker"
+			},
+			"sv-SE": {
+				"name": "EmojiPicker"
+			},
+			"zh-CN": {
+				"name": "EmojiPicker"
+			},
+			"zh-TW": {
+				"name": "EmojiPicker"
+			}
+		},
+		"defaultLanguage": "en-US"
+	},
+	"dependencies": {
+		"@joeattardi/emoji-button": "^4.6.2"
+	}
+}
