@@ -1,4 +1,5 @@
-import document from "document"
+import document from "document";
+import {emojis} from "./fitmoji"
 
 
 import * as fs from "fs";
@@ -70,4 +71,22 @@ function convertToHex(str) {
 emoji.text =  convertFromHex(0x1F47B);
 emoji.text = "😍"
 emoji.text = "❤️"
+emoji.text = "❌"
+emoji.text = "⏩"
+
+console.log(emojis.length)
+
+let i: number = 0;
+setInterval(function() {
+
+    if (i < emojis.length) {
+      emoji.text = emojis[i]
+    }
+    else return;
+    i++;
+}, 1000);
+    
+   
+
+
 
