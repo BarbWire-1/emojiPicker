@@ -1,9 +1,12 @@
 <svg>
-    <rect id="background" />
+   <rect id="background" />
     
-    <svg id="buttons" y="30">
+   <svg id="buttons" y="30">
       <text id="nextEmoji" x="50%" y="100%-40" text-anchor="start" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">NEX</text>
       <text id="lastEmoji" x="50%" y="100%-40" text-anchor="end" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">PRE</text>
+      <rect x="25%" y="70%" width="50%" height="20" fill="orange" />
+   <text id="viewMode"  x="50%" y="$-5" text-anchor="middle" font-size="20">single view</text>
+   
    </svg>
    
    <svg id="single">
@@ -13,9 +16,9 @@
    
   
     
-   <svg id ="multiview" x="32" y="-130" fill="white" font-size="30">
+   <svg id ="multiview" x="32" y="-130" fill="white" font-size="30" display="none">
    <g >
-      <text id="0"  class="multi" x="$+30"/>
+      <text id="0"  class="multi" x="32"/>
       <text id="1"  class="multi" x="$+30"/>
       <text id="2"  class="multi" x="$+30"/>
       <text id="3"  class="multi" x="$+30"/>
