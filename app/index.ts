@@ -5,8 +5,8 @@ import { fixedFromCharCode } from "./readUTF";
 
 // containers
 const buttons = document.getElementById("buttons");
-const single = document.getElementById("single");
-const multiview = document.getElementById("multiview");
+const single = document.getElementById("single") as GraphicsElement;
+const multiview = document.getElementById("multiview") as GraphicsElement;
 
 // search in containers
 const emojiNumber = single.getElementById("emojiCode");
@@ -14,12 +14,12 @@ const emoji = single.getElementById("emoji");
 const viewButton = buttons.getElementById("viewButton");
 const modeText = buttons.getElementById("viewMode")
 const nextEmoji = buttons.getElementById("nextEmoji");
-const lastEmoji = buttons.getElementById("lastEmoji");
+const prevEmoji = buttons.getElementById("lastEmoji");
 
 
 // BUTTONS
 nextEmoji.text = "⏩";
-lastEmoji.text = "⏪";
+prevEmoji.text = "⏪";
 
 //FUNCTIONS
 //Formats array items to 0x00000
@@ -33,9 +33,18 @@ const assignEmoji = (c) => {
   emoji.text = fixedFromCharCode(emojisHex[c]);
 };
 
+const assignMulti = (factor) => {
+  multiview.getElementsByClassName("multi").forEach((el) => {
+        
+    let index = Number(el.id)+(30*factor);
+    el.text = fixedFromCharCode(emojisHex[index]);
+  }); 
+}
+
 const n = emojisHex.length;
 let counter = 0;
 let mode = 0;
+let factor = 0;
 
 
 // SWITCHES VIEWMODE
@@ -44,38 +53,48 @@ viewButton.onclick = () => {
   mode %=2;
   modeText.text = mode === 0 ? "single view" : "multi view";
   console.log(`mode: ${mode}`)
-
+  multiview.style.display = mode === 0 ? "none" : "inline";
+  single.style.display = mode === 1 ? "none" : "inline";
 // CLICK THROUGH EMOJIS 
 // single view
 
   
   nextEmoji.onclick = () => {
+    
     if (mode === 0) {
+    
       if(counter<n) {
-        
         counter++;
         let c = counter % n;
         assignEmoji(c)
+      }
     } else {
-      //multiview needs 30 per click
-      return;
+  
+      assignMulti(factor)
+      factor++;
+      factor %= Math.ceil(n/30)
     };
-  };
   }
-  lastEmoji.onclick = () => {
+  prevEmoji.onclick = () => {
     if (mode === 0) {
+      
       if(counter>0) {
         counter--;
         let c = counter % n;
         assignEmoji(c);
+      } 
     } else {
-      //multiview needs 30 per click
-      return;
+        //TODO here is something wrong
+        if(factor>0 ){
+          factor--;
+          
+          assignMulti(factor);
+          factor %= Math.ceil(n/30)
+        }
     };
   };
 }
-}
-console.log(`mode: ${mode}`)
+
 
 //emoji.text = fixedFromCharCode(0x1F372);
 
@@ -84,13 +103,13 @@ console.log(`mode: ${mode}`)
 //TODO1 LOGIC FOR MULTIVIEW!!!
 
 // THIS DOESN'T WORK ON USES???
-multiview.getElementsByClassName("multi").forEach((el) => {
-  let index = Number(el.id);
-  el.text = fixedFromCharCode(emojisHex[index]);
-  
-  //console.log(`id${el.id}`);
-  //console.log(displayHex(emojisHex[index]));
-}); 
+// multiview.getElementsByClassName("multi").forEach((el) => {
+//   let index = Number(el.id);
+//   el.text = fixedFromCharCode(emojisHex[index]);
+//   
+//   //console.log(`id${el.id}`);
+//   //console.log(displayHex(emojisHex[index]));
+// }); 
     
    
 
