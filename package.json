@@ -59,8 +59,6 @@
 			}
 		},
 		"defaultLanguage": "en-US"
-	},
-	"dependencies": {
-		"@joeattardi/emoji-button": "^4.6.2"
 	}
+	
 }
