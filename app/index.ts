@@ -24,6 +24,7 @@ const assignEmoji = (c) => {
   emojiNumber.text = String(c);//how can I have 0xA9 here instaed 169???
   emojiNumber.text = displayHex(emojisHex[c]);
   emoji.text = fixedFromCharCode(emojisHex[c]);
+  console.log(fixedFromCharCode(emojisHex[c]));
 };
 
 nextEmoji.onclick = () => {
@@ -47,7 +48,7 @@ lastEmoji.onclick = () => {
 };
 //emoji.text = fixedFromCharCode(0x1F372);
 
-//TODO check and understand the polyfill
+//TODO check and really understand the polyfill
 //TODO check why astral plane chars don't work. other format needed?
 
 

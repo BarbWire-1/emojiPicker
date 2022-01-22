@@ -12,6 +12,7 @@ if (!String.fromCodePoint) (function(stringFromCharCode) {
       
         if (codePoint <= 0xFFFF) { // BMP code point _ONLY THESE SEEM TO DISPLAY
           codeLen = codeUnits.push(codePoint);
+        // THIS SHOWS "NO GLYPH" in display BW
         // } else { // Astral code point; split in surrogate halves
         //   // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
         //   codePoint -= 0x10000;
@@ -40,6 +41,8 @@ if (!String.fromCodePoint) (function(stringFromCharCode) {
 //TODO check this function (not working)
 //tried as variation to outcomment part above
 //https://en.wikipedia.org/wiki/UTF-16#Code_points_U.2B10000_to_U.2B10FFFF
+// THIS DOESN'T SHOW ANYTHING IN DISPLAY
+// console.log returns "?????"
 function fixedFromCharCode (codePoint) {
   if (codePoint > 0xFFFF) {
       codePoint -= 0x10000;
@@ -50,7 +53,7 @@ function fixedFromCharCode (codePoint) {
       return String.fromCharCode(codePoint);
   }
 }
-console.log(fixedFromCharCode(0x1F372))//returns "?????" - NOT "no glyph"
+console.log(fixedFromCharCode(0x1F38A))//returns "?????" - NOT "no glyph"
 // 
 export {fixedFromCharCode}
   
