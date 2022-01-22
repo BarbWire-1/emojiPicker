@@ -3,15 +3,19 @@ import document from "document";
 import {emojisHex} from "./fitmoji";
 import { fixedFromCharCode } from "./readUTF";
 
-const emojiNumber = document.getElementById("emojiCode");
-const emoji = document.getElementById("emoji");
-const nextEmoji = document.getElementById("nextEmoji");
-const lastEmoji = document.getElementById("lastEmoji");
+const buttons = document.getElementById("buttons");
+const single = document.getElementById("single");
+
+const emojiNumber = single.getElementById("emojiCode");
+const emoji = single.getElementById("emoji");
+const nextEmoji = buttons.getElementById("nextEmoji");
+const lastEmoji = buttons.getElementById("lastEmoji");
 
 
 
 
-// CLICK THROUGH EMOJIS
+// CLICK THROUGH EMOJIS 
+// (single view with hex)
 const n = emojisHex.length;
 nextEmoji.text = "⏩";
 lastEmoji.text = "⏪";
