@@ -1,7 +1,7 @@
 
 import document from "document";
 import {emojisHex} from "./fitmoji";
-import { fromCharCode,fixedFromCharCode } from "./readUTF";
+import { fixedFromCharCode } from "./readUTF";
 
 const emojiNumber = document.getElementById("emojiCode");
 const emoji = document.getElementById("emoji");
@@ -19,11 +19,11 @@ console.log(n)
 let counter = 0;
 
 const assignEmoji = (c) => {
-  //@ts-ignore
-  console.log(emojisHex[c].toString(16))// Unhandled exception: Radix must be between 2 and 36.
+  let displayHex = (hex) => {return `0x${("00000" +hex.toString(16)).slice(-5)}`};
+  
   emojiNumber.text = String(c);//how can I have 0xA9 here instaed 169???
-  emojiNumber.text = emojisHex[c].toString(16);
-  emoji.text = String.fromCharCode(emojisHex[c]);
+  emojiNumber.text = displayHex(emojisHex[c]);
+  emoji.text = fixedFromCharCode(emojisHex[c]);
 };
 
 nextEmoji.onclick = () => {
@@ -48,8 +48,7 @@ lastEmoji.onclick = () => {
 //emoji.text = fixedFromCharCode(0x1F372);
 
 //TODO check and understand the polyfill
-//TODO how to print hexcode in text-format??? like 0xblahblah?
-//TODO check why the others don't work. other format needed?
+//TODO check why astral plane chars don't work. other format needed?
 
 
 
