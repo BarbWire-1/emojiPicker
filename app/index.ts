@@ -1,7 +1,7 @@
 
 import document from "document";
 import {emojisHex} from "./fitmoji";
-import { fixedFromCharCode } from "./readUTF";
+import { fromCharCode,fixedFromCharCode } from "./readUTF";
 
 const emojiNumber = document.getElementById("emojiCode");
 const emoji = document.getElementById("emoji");
@@ -19,8 +19,11 @@ console.log(n)
 let counter = 0;
 
 const assignEmoji = (c) => {
+  //@ts-ignore
+  console.log(emojisHex[c].toString(16))// Unhandled exception: Radix must be between 2 and 36.
   emojiNumber.text = String(c);//how can I have 0xA9 here instaed 169???
-  emoji.text = fixedFromCharCode(emojisHex[c]);
+  emojiNumber.text = emojisHex[c].toString(16);
+  emoji.text = String.fromCharCode(emojisHex[c]);
 };
 
 nextEmoji.onclick = () => {
