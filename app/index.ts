@@ -42,7 +42,7 @@ multiview.getElementsByClassName("multi").forEach((el) => {
 const assignEmoji = (c) => { 
   
   emojiNumber.text = String(c);//how can I have 0xA9 here instaed 169???
-  emojiNumber.text = displayHex(emojisHex[c]);
+  emojiNumber.text = `index: ${c}, (${displayHex(emojisHex[c])})`;
   emoji.text = fixedFromCharCode(emojisHex[c]);
   //console.log(fixedFromCharCode(emojisHex[c]));
 };

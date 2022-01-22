@@ -1,13 +1,13 @@
 <svg>
     <rect id="background" />
     
-    <svg id="buttons">
+    <svg id="buttons" y="30">
       <text id="nextEmoji" x="50%" y="100%-40" text-anchor="start" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">NEX</text>
       <text id="lastEmoji" x="50%" y="100%-40" text-anchor="end" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">PRE</text>
    </svg>
    
    <svg id="single">
-      <text id="emojiCode" x="50%" y="50%-80" font-size="30" text-anchor="middle" fill="white">HEXCODE</text>
+      <text id="emojiCode" x="50%" y="50%-80" font-size="25" text-anchor="middle" fill="white" text-length="25">HEX</text>
       <text id="emoji" x="50%" y="50%+50" font-size="100" text-anchor="middle" fill="white">EMO</text>
    </svg>
    
