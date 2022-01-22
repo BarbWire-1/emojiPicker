@@ -3,49 +3,45 @@ import document from "document";
 import {emojisHex} from "./fitmoji";
 import { fixedFromCharCode } from "./readUTF";
 
+// groups
 const buttons = document.getElementById("buttons");
 const single = document.getElementById("single");
-const multiview = document.getElementById("multiview");
 
+// search in groups
 const emojiNumber = single.getElementById("emojiCode");
 const emoji = single.getElementById("emoji");
 const nextEmoji = buttons.getElementById("nextEmoji");
 const lastEmoji = buttons.getElementById("lastEmoji");
 
-// const one = multi.getElementById("0")
-// const two = multi.getElementById("1")
 
-// multiview.getElementsByClassName("multi").forEach((el) => {
-//   el.text = "⏩";
-//   console.log(`id${el.id}`);
-// });
-
-
-// CLICK THROUGH EMOJIS 
-// (single view with hex)
-const n = emojisHex.length;
+// BUTTONS
 nextEmoji.text = "⏩";
 lastEmoji.text = "⏪";
-console.log(`Number of Chars: ${n}`)
-let counter = 0;
 
+//FUNCTIONS
+//Formats array items to 0x00000
 let displayHex = (hex) => {return `0x${("00000" +hex.toString(16)).slice(-5)}`};
 
-multiview.getElementsByClassName("multi").forEach((el) => {
-  let index = Number(el.id);
-  el.text = fixedFromCharCode(emojisHex[index]);
-  
-  //console.log(`id${el.id}`);
-  //console.log(displayHex(emojisHex[index]));
-}); 
-
+//ASSIGNS EMOJIS
 const assignEmoji = (c) => { 
   
   emojiNumber.text = String(c);//how can I have 0xA9 here instaed 169???
   emojiNumber.text = `index: ${c}, (${displayHex(emojisHex[c])})`;
   emoji.text = fixedFromCharCode(emojisHex[c]);
-  //console.log(fixedFromCharCode(emojisHex[c]));
 };
+
+const n = emojisHex.length;
+let counter = 0;
+
+
+
+
+
+
+// CLICK THROUGH EMOJIS 
+// 1 per single view + index and hexcode
+// 30 per multi view
+
 
 nextEmoji.onclick = () => {
   if(counter<n) {
@@ -74,7 +70,14 @@ lastEmoji.onclick = () => {
 //TODO check why astral plane chars don't work. other format needed?
 
 
-
+// THIS DOESN'T WORK ON USES???
+// multiview.getElementsByClassName("multi").forEach((el) => {
+//   let index = Number(el.id);
+//   el.text = fixedFromCharCode(emojisHex[index]);
+//   
+//   //console.log(`id${el.id}`);
+//   //console.log(displayHex(emojisHex[index]));
+// }); 
     
    
 
