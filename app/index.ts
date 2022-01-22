@@ -52,7 +52,7 @@ viewButton.onclick = () => {
   mode++;
   mode %=2;
   modeText.text = mode === 0 ? "single view" : "multi view";
-  console.log(`mode: ${mode}`)
+  //console.log(`mode: ${mode}`)
   multiview.style.display = mode === 0 ? "none" : "inline";
   single.style.display = mode === 1 ? "none" : "inline";
 // CLICK THROUGH EMOJIS 
@@ -84,7 +84,7 @@ viewButton.onclick = () => {
         assignEmoji(c);
       } 
     } else {
-        //TODO here is something wrong
+        //TODO here is something wrong?
         if(factor>0 ){
           factor--;
           
@@ -100,7 +100,7 @@ viewButton.onclick = () => {
 
 //TODO check and really understand the polyfill
 //TODO check why astral plane chars don't work. other format needed?
-//TODO1 LOGIC FOR MULTIVIEW!!!
+
 
 // THIS DOESN'T WORK ON USES???
 // multiview.getElementsByClassName("multi").forEach((el) => {
