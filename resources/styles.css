@@ -3,3 +3,6 @@
     height: 100%;
     fill: #000000;
 }
+.multi {
+    text-anchor: middle;
+}

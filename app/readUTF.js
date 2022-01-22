@@ -33,7 +33,7 @@ if (!String.fromCodePoint) (function(stringFromCharCode) {
         "value": fromCodePoint, "configurable": true, "writable": true
       });
     } catch(e) {
-     console.lerror("I didn't work as expected!")
+     console.error("I didn't work as expected!")
       String.fromCodePoint = fromCodePoint;
     }
   }(String.fromCharCode));
@@ -53,7 +53,7 @@ function fixedFromCharCode (codePoint) {
       return String.fromCharCode(codePoint);
   }
 }
-console.log(fixedFromCharCode(0x1F38A))//returns "?????" - NOT "no glyph"
+//console.log(fixedFromCharCode(0x1F38A))//returns "?????" - NOT "no glyph"
 // 
 export {fixedFromCharCode}
   

@@ -2,16 +2,61 @@
     <rect id="background" />
     
     <svg id="buttons">
-      <text id="nextEmoji" x="50%" y="100%-40" text-anchor="start" fill="red"
-         font-family="System-Regular" font-size="40" pointer-events="visible">NEX</text>
-         <text id="lastEmoji" x="50%" y="100%-40" text-anchor="end" fill="red"
-         font-family="System-Regular" font-size="40" pointer-events="visible">PRE</text>
-      </svg>
+      <text id="nextEmoji" x="50%" y="100%-40" text-anchor="start" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">NEX</text>
+      <text id="lastEmoji" x="50%" y="100%-40" text-anchor="end" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">PRE</text>
+   </svg>
    
    <svg id="single">
-      <text id="emojiCode" x="50%" y="50%-80" font-size="30" text-anchor="middle" fill="white"
-         >HEXCODE</text>
-      <text id="emoji" x="50%" y="50%+50" font-size="100" text-anchor="middle" fill="white"
-         >EMO</text>
-      </svg>
+      <text id="emojiCode" x="50%" y="50%-80" font-size="30" text-anchor="middle" fill="white">HEXCODE</text>
+      <text id="emoji" x="50%" y="50%+50" font-size="100" text-anchor="middle" fill="white">EMO</text>
+   </svg>
+   
+  
+    
+   <svg id ="multiview" x="32" y="-130" fill="white" font-size="30">
+   <g >
+      <text id="0"  class="multi" x="$+30"/>
+      <text id="1"  class="multi" x="$+30"/>
+      <text id="2"  class="multi" x="$+30"/>
+      <text id="3"  class="multi" x="$+30"/>
+      <text id="4"  class="multi" x="$+30"/>
+      <text id="5"  class="multi" x="$+30"/>
+   </g>
+   <g transform = "translate(-2,50)">   
+      <text id="6"  class="multi" x="32"/>
+      <text id="7"  class="multi" x="$+30"/>
+      <text id="8"  class="multi" x="$+30"/>
+      <text id="9"  class="multi" x="$+30"/>
+      <text id="10"  class="multi" x="$+30"/>
+      <text id="11"  class="multi" x="$+30"/>
+   </g>
+   
+   <g transform = "translate(-2,100)">   
+      <text id="12"  class="multi" x="32"/>
+      <text id="13"  class="multi" x="$+30"/>
+      <text id="14"  class="multi" x="$+30"/>
+      <text id="15"  class="multi" x="$+30"/>
+      <text id="16"  class="multi" x="$+30"/>
+      <text id="17"  class="multi" x="$+30"/>
+   </g>
+   
+   <g transform = "translate(-2,150)">   
+      <text id="18"  class="multi" x="32"/>
+      <text id="19"  class="multi" x="$+30"/>
+      <text id="20"  class="multi" x="$+30"/>
+      <text id="21"  class="multi" x="$+30"/>
+      <text id="22"  class="multi" x="$+30"/>
+      <text id="23"  class="multi" x="$+30"/>
+   </g>
+   
+   <g transform = "translate(-2,200)">   
+      <text id="24"  class="multi" x="32"/>
+      <text id="25"  class="multi" x="$+30"/>
+      <text id="26"  class="multi" x="$+30"/>
+      <text id="27"  class="multi" x="$+30"/>
+      <text id="28"  class="multi" x="$+30"/>
+      <text id="29"  class="multi" x="$+30"/>
+   </g>
+   </svg>
+
 </svg>
