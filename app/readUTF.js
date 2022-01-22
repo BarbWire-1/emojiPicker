@@ -13,13 +13,13 @@ if (!String.fromCodePoint) (function(stringFromCharCode) {
         if (codePoint <= 0xFFFF) { // BMP code point _ONLY THESE SEEM TO DISPLAY
           codeLen = codeUnits.push(codePoint);
         // THIS SHOWS "NO GLYPH" in display BW
-        // } else { // Astral code point; split in surrogate halves
-        //   // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
-        //   codePoint -= 0x10000;
-        //   codeLen = codeUnits.push(
-        //     (codePoint >> 10) + 0xD800,  // highSurrogate
-        //     (codePoint % 0x400) + 0xDC00 // lowSurrogate
-        //   );
+        } else { // Astral code point; split in surrogate halves
+          // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
+          codePoint -= 0x10000;
+          codeLen = codeUnits.push(
+            (codePoint >> 10) + 0xD800,  // highSurrogate
+            (codePoint % 0x400) + 0xDC00 // lowSurrogate
+          );
         }
         if (codeLen >= 0x3fff) {
           result += stringFromCharCode.apply(null, codeUnits);
