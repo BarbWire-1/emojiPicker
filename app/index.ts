@@ -1,24 +1,14 @@
 
 import document from "document";
 import {emojisHex} from "./fitmoji";
+import { fixedFromCharCode } from "./readUTF";
 
 const emojiNumber = document.getElementById("emojiCode");
 const emoji = document.getElementById("emoji");
 const nextEmoji = document.getElementById("nextEmoji");
 const lastEmoji = document.getElementById("lastEmoji");
 
-//TODO check this function (not working)
-//https://en.wikipedia.org/wiki/UTF-16#Code_points_U.2B10000_to_U.2B10FFFF
-function fixedFromCharCode (codePoint) {
-  if (codePoint > 0xFFFF) {
-      codePoint -= 0x10000;
-      return String.fromCharCode(0xD800 + (codePoint >> 10), 0xDC00 + (codePoint & 0x3FF));
-  }
-  else {
-      return String.fromCharCode(codePoint);
-  }
-}
-console.log(fixedFromCharCode(0x1F372))//returns "?????" - NOT "no glyph"
+
 
 
 // CLICK THROUGH EMOJIS
@@ -30,7 +20,7 @@ let counter = 0;
 
 const assignEmoji = (c) => {
   emojiNumber.text = String(c);//how can I have 0xA9 here instaed 169???
-  emoji.text = String.fromCharCode(emojisHex[c]);
+  emoji.text = fixedFromCharCode(emojisHex[c]);
 };
 
 nextEmoji.onclick = () => {
