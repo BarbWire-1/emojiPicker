@@ -37,19 +37,16 @@ const n = emojisHex.length;
 let counter = 0;
 let mode = 0;
 
+
+// SWITCHES VIEWMODE
 viewButton.onclick = () => {
   mode++;
   mode %=2;
   modeText.text = mode === 0 ? "single view" : "multi view";
   console.log(`mode: ${mode}`)
 
-
-
-
 // CLICK THROUGH EMOJIS 
-// 1 per single view + index and hexcode
-// 30 per multi view
-//??????????
+// single view
 
   
   nextEmoji.onclick = () => {
@@ -60,6 +57,7 @@ viewButton.onclick = () => {
         let c = counter % n;
         assignEmoji(c)
     } else {
+      //multiview needs 30 per click
       return;
     };
   };
@@ -71,6 +69,7 @@ viewButton.onclick = () => {
         let c = counter % n;
         assignEmoji(c);
     } else {
+      //multiview needs 30 per click
       return;
     };
   };
@@ -82,7 +81,7 @@ console.log(`mode: ${mode}`)
 
 //TODO check and really understand the polyfill
 //TODO check why astral plane chars don't work. other format needed?
-
+//TODO1 LOGIC FOR MULTIVIEW!!!
 
 // THIS DOESN'T WORK ON USES???
 multiview.getElementsByClassName("multi").forEach((el) => {
