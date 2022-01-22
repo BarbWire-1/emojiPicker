@@ -2,8 +2,8 @@
    <rect id="background" />
     
    <svg id="buttons" y="30">
-      <rect id="viewMode" x="0" y="70%" width="100%" height="100" fill="#f59c2f" pointer-events="visible"/>
-      <text id="viewMode"  x="50%" y="50%+86" text-anchor="middle" font-size="20">single view</text>
+      <rect id="viewButton" x="0" y="70%" width="100%" height="100" fill="#f59c2f" pointer-events="visible"/>
+      <text id="viewMode"  x="50%" y="50%+86" text-anchor="middle" font-size="20">->click to choose view mode</text>
       <text id="nextEmoji" x="50%" y="100%-40" text-anchor="start" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">NEX</text>
       <text id="lastEmoji" x="50%" y="100%-40" text-anchor="end" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">PRE</text>
       

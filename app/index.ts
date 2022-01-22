@@ -3,13 +3,16 @@ import document from "document";
 import {emojisHex} from "./fitmoji";
 import { fixedFromCharCode } from "./readUTF";
 
-// groups
+// containers
 const buttons = document.getElementById("buttons");
 const single = document.getElementById("single");
+const multiview = document.getElementById("multiview");
 
-// search in groups
+// search in containers
 const emojiNumber = single.getElementById("emojiCode");
 const emoji = single.getElementById("emoji");
+const viewButton = buttons.getElementById("viewButton");
+const modeText = buttons.getElementById("viewMode")
 const nextEmoji = buttons.getElementById("nextEmoji");
 const lastEmoji = buttons.getElementById("lastEmoji");
 
@@ -32,8 +35,13 @@ const assignEmoji = (c) => {
 
 const n = emojisHex.length;
 let counter = 0;
+let mode = 0;
 
-
+viewButton.onclick = () => {
+  mode++;
+  mode %=2;
+  modeText.text = mode === 0 ? "single view" : "multi view";
+  console.log(`mode: ${mode}`)
 
 
 
@@ -41,28 +49,34 @@ let counter = 0;
 // CLICK THROUGH EMOJIS 
 // 1 per single view + index and hexcode
 // 30 per multi view
+//??????????
 
-
-nextEmoji.onclick = () => {
-  if(counter<n) {
-    let c = counter % n;
-    counter++;
-    assignEmoji(c)
-  } else {
-    return;
+  
+  nextEmoji.onclick = () => {
+    if (mode === 0) {
+      if(counter<n) {
+        
+        counter++;
+        let c = counter % n;
+        assignEmoji(c)
+    } else {
+      return;
+    };
   };
-};
-
-lastEmoji.onclick = () => {
-  if(counter>0) {
-    counter--;
-    let c = counter % n;
-    assignEmoji(c);
-  } else {
-    return;
+  }
+  lastEmoji.onclick = () => {
+    if (mode === 0) {
+      if(counter>0) {
+        counter--;
+        let c = counter % n;
+        assignEmoji(c);
+    } else {
+      return;
+    };
   };
-};
-
+}
+}
+console.log(`mode: ${mode}`)
 
 //emoji.text = fixedFromCharCode(0x1F372);
 
@@ -71,13 +85,13 @@ lastEmoji.onclick = () => {
 
 
 // THIS DOESN'T WORK ON USES???
-// multiview.getElementsByClassName("multi").forEach((el) => {
-//   let index = Number(el.id);
-//   el.text = fixedFromCharCode(emojisHex[index]);
-//   
-//   //console.log(`id${el.id}`);
-//   //console.log(displayHex(emojisHex[index]));
-// }); 
+multiview.getElementsByClassName("multi").forEach((el) => {
+  let index = Number(el.id);
+  el.text = fixedFromCharCode(emojisHex[index]);
+  
+  //console.log(`id${el.id}`);
+  //console.log(displayHex(emojisHex[index]));
+}); 
     
    
 
