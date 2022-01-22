@@ -9,6 +9,7 @@ if (!String.fromCodePoint) (function(stringFromCharCode) {
         // The (codePoint>>>0) === codePoint clause handles decimals and negatives
         if (!(codePoint < 0x10FFFF && (codePoint>>>0) === codePoint))
           throw RangeError("Invalid code point: " + codePoint);
+      
         if (codePoint <= 0xFFFF) { // BMP code point
           codeLen = codeUnits.push(codePoint);
         } else { // Astral code point; split in surrogate halves
