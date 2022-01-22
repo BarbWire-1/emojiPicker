@@ -9,13 +9,13 @@ const lastEmoji = document.getElementById("lastEmoji");
 
 //TODO check this function (not working)
 //https://en.wikipedia.org/wiki/UTF-16#Code_points_U.2B10000_to_U.2B10FFFF
-function fixedFromCharCode (codePt) {
-  if (codePt > 0xFFFF) {
-      codePt -= 0x10000;
-      return String.fromCharCode(0xD800 + (codePt >> 10), 0xDC00 + (codePt & 0x3FF));
+function fixedFromCharCode (codePoint) {
+  if (codePoint > 0xFFFF) {
+      codePoint -= 0x10000;
+      return String.fromCharCode(0xD800 + (codePoint >> 10), 0xDC00 + (codePoint & 0x3FF));
   }
   else {
-      return String.fromCharCode(codePt);
+      return String.fromCharCode(codePoint);
   }
 }
 console.log(fixedFromCharCode(0x1F372))//returns "?????" - NOT "no glyph"
