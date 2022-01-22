@@ -84,10 +84,10 @@ viewButton.onclick = () => {
         assignEmoji(c);
       } 
     } else {
-        //TODO here is something wrong?
+        //TODO here is something wrong
+        //needs 2 clicks to turn
         if(factor>0 ){
           factor--;
-          
           assignMulti(factor);
           factor %= Math.ceil(n/30)
         }
