@@ -1,17 +1,17 @@
 <svg>
     <rect id="background" />
     
-    <g id="buttons">
+    <svg id="buttons">
       <text id="nextEmoji" x="50%" y="100%-40" text-anchor="start" fill="red"
-         font-family="System-Regular" font-size="40" pointer-events="visible">START</text>
+         font-family="System-Regular" font-size="40" pointer-events="visible">NEX</text>
          <text id="lastEmoji" x="50%" y="100%-40" text-anchor="end" fill="red"
-         font-family="System-Regular" font-size="40" pointer-events="visible">START</text>
-   </g>
+         font-family="System-Regular" font-size="40" pointer-events="visible">PRE</text>
+      </svg>
    
-   <g id="single">
+   <svg id="single">
       <text id="emojiCode" x="50%" y="50%-80" font-size="30" text-anchor="middle" fill="white"
-         >EMOJICODE</text>
+         >HEXCODE</text>
       <text id="emoji" x="50%" y="50%+50" font-size="100" text-anchor="middle" fill="white"
          >EMO</text>
-   </g>
+      </svg>
 </svg>
