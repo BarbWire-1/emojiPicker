@@ -36,8 +36,7 @@ const assignEmoji = (c: number) => {
 };
 
 const assignMulti = (factor: number) => {
-  multiview.getElementsByClassName("multi").forEach((el) => {
-        
+  multiview.getElementsByClassName("multi").forEach((el: TextElement) => {
     let index = Number(el.id)+(30*factor);
     el.text = fixedFromCharCode(emojisHex[index]);
   }); 
@@ -151,16 +150,17 @@ const emo = (key: string) => {
 //all fitmoji stuff could be removed.
 //VERRRRRRY cumbersome
 let emoText=[];
-emoji.onclick = () => {
-  emoText.push(emoji.text)
-  console.log(JSON.stringify(emoText)) 
-  
-}
+(document.getElementsByClassName("multi") as any).forEach((el) => {
+  el.onclick = () => {
+    emoText.push(el.text)
+    console.log(JSON.stringify(emoText)) 
+  }  
+});
 //write this to fs somehow to reuse on reload?
-const myEmos = emoText.slice()
-//let myEmos = ["☺","⌛"]
+//const myEmos = emoText.slice()
+let myEmos = ["⌛","↕","⏸","ℹ","⏯","↩"]  
 
-emoji.text = myEmos[0] || "hex"
+//emoji.text = myEmos[0] || "hex"
 
 
 

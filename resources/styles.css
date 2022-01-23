@@ -5,4 +5,5 @@
 }
 .multi {
     text-anchor: middle;
+    pointer-events: visible;
 }

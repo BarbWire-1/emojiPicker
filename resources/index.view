@@ -18,7 +18,7 @@
    
   
     
-   <svg id ="multiview" x="32" y="-130" fill="white" font-size="30" display="none">
+   <svg id ="multiview" x="32" y="-130" fill="white" font-size="30" display="none" pointer-events="visible">
    <g >
       <text id="0"  class="multi" x="32"/>
       <text id="1"  class="multi" x="$+30"/>
