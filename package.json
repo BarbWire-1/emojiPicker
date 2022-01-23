@@ -11,7 +11,6 @@
 		"@fitbit/sdk": "^6.0.2",
 		"@fitbit/sdk-cli": "^1.7.3",
 		"fitbit-sdk-types": "^7.0.5"
-		
 	},
 	"fitbit": {
 		"appUUID": "e95e0762-ff49-4c22-85d1-6c4f6cc8589b",
@@ -60,6 +59,8 @@
 			}
 		},
 		"defaultLanguage": "en-US"
+	},
+	"dependencies": {
+		"core-js": "3.20.3"
 	}
-	
 }

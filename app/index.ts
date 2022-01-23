@@ -1,3 +1,4 @@
+// polyfill all `core-js` features, including early-stage proposals:
 
 import document from "document";
 import {emojisHex, shortKeys} from "./fitmoji";
@@ -161,8 +162,15 @@ emoji.onclick = () => {
 // console.log(encoded)//%F0%9F%8C%8E 
 // console.log('\xf0\x9f\x8c\x8e')//ð
 // 
-// console.log('💩' == '\uD83D\uDCA9')
-// console.log('💩')// ?????
-// console.log('\uD83D\uDCA9')// ?????
+console.log('💩' === '\uD83D\uDCA9')// true
+console.log('💩')// ?????
+console.log('\uD83D\uDCA9')// ?????
+console.log('\u{D83D}\u{DCA9}')// ?????
 
+
+
+console.log((0x1F315).toString(16))//1f315
+console.log('\xF0\x9F\x92\xA9') //ð©
+console.log('%F0%9F%92%A9')//%F0%9F%92%A9 
+console.log('\u{1F4A9}')// ?????
 
