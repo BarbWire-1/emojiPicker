@@ -61,21 +61,6 @@ viewButton.onclick = () => {
   
   loopSymbols();
 }
-//console.log(document.getElementById("test").text = "\u{1f36b}");
-console.log("⭐")
-console.log("⭐".length)//1
-console.log("🍩")
-console.log("🍩".length)//2
-console.log('\u{1F647}')//NOT WORKING
-//emoji.text= '\u{1F647}'
-//emoji.text = ":capricorn:"
-
-const emo = (key: string) => {
-  let i= shortKeys.indexOf(key);
-  return fixedFromCharCode(emojisHex[i]);
-}
-
-console.log(emo(":copyright:"))
 
 
 function loopSymbols() {
@@ -132,7 +117,28 @@ function loopSymbols() {
 //   //console.log(displayHex(emojisHex[index]));
 // }); 
     
-   
+ //TESTING 
+ //console.log(document.getElementById("test").text = "\u{1f36b}");
+console.log("⭐")
+console.log("⭐".length)//1
+console.log("🍩")
+console.log("🍩".length)//2
+console.log('\u{1F647}')//NOT WORKING
+//emoji.text= '\u{1F647}'
+//emoji.text = ":capricorn:"
+
+const emo = (key: string) => {
+  let i= shortKeys.indexOf(key);
+  return fixedFromCharCode(emojisHex[i]);
+}
+
+console.log(emo(":copyright:"))
+console.log("🙂")// from mac symbols. Not working
+//possible to get a list of supported fitmojis in there?
+console.log("♞")//HAH! This simple one does!
+//In console, but NOT displayed as no match in fitmoji???
+
+  
 
 
 
