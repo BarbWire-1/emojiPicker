@@ -136,9 +136,9 @@ console.log(emo(":copyright:"))
 console.log("🙂")// from mac symbols. Not working
 //possible to get a list of supported fitmojis in there?
 console.log("♞")//HAH! This simple one does!
-//In console, but NOT displayed as no match in fitmoji???
+//In console, but NOT displayed as no match in fitmoji??? => NO GLYPH
 
-  
+  //emoji.text="👽"//gets read, but not displayed
 
 
 
