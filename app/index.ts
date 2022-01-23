@@ -1,6 +1,6 @@
 
 import document from "document";
-import {emojisHex} from "./fitmoji";
+import {emojisHex, shortKeys} from "./fitmoji";
 import { fixedFromCharCode } from "./readUTF";
 
 // containers
@@ -103,7 +103,12 @@ console.log('\u{1F647}')//NOT WORKING
 //emoji.text= '\u{1F647}'
 //emoji.text = ":capricorn:"
 
+const emo = (key,value) => {
+ 
+  shortKeys[key]= fixedFromCharCode(shortKeys[value]);
+}
 
+console.log((shortKeys[0]).valueOf())
 
 //emoji.text = fixedFromCharCode(0x1F372);
 
