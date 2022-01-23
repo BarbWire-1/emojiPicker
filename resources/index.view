@@ -13,7 +13,7 @@
    
    <svg id="single">
       <text id="emojiCode" x="50%" y="50%-80" font-size="25" text-anchor="middle" fill="white" text-length="25">HEX</text>
-      <text id="emoji" x="50%" y="50%+50" font-size="100" text-anchor="middle" fill="white">EMO</text>
+      <text id="emoji" x="50%" y="50%+50" font-size="100" font-family="fitmoji" text-anchor="middle" fill="white">EMO</text>
    </svg>
    
   
@@ -63,5 +63,8 @@
       <text id="29"  class="multi" x="$+30"/>
    </g>
    </svg>
+   
+   <text id="test" x="0" y="0" fill="black"
+      font-family="fitmoji" font-size="30">0</text>
 
 </svg>

@@ -94,13 +94,23 @@ viewButton.onclick = () => {
     };
   };
 }
+//console.log(document.getElementById("test").text = "\u{1f36b}");
+console.log("⭐")
+console.log("⭐".length)//1
+console.log("🍩")
+console.log("🍩".length)//2
+console.log('\u{1F647}')//NOT WORKING
+//emoji.text= '\u{1F647}'
+
+
 
 
 //emoji.text = fixedFromCharCode(0x1F372);
 
 //TODO check and really understand the polyfill
 //TODO check why astral plane chars don't work. other format needed?
-
+//TODO if all the >FFFF doesn't work, go with simply this '\u{XXXX}' format!!
+// TODO, way to convert unicode into symbol directly in code-view? 
 
 // THIS DOESN'T WORK ON USES???
 // multiview.getElementsByClassName("multi").forEach((el) => {
