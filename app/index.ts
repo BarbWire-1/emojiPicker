@@ -149,18 +149,31 @@ const emo = (key: string) => {
 //to use in the project
 //all fitmoji stuff could be removed.
 //VERRRRRRY cumbersome
-let emoText=[];
-(document.getElementsByClassName("multi") as any).forEach((el) => {
-  el.onclick = () => {
-    emoText.push(el.text)
-    console.log(JSON.stringify(emoText)) 
-  }  
-});
+
+// const emo2 = () =>{
+//   
+//   let emoText=[];
+//   (document.getElementsByClassName("multi") as any).forEach((el) => {
+//     el.onclick = () => {
+//       emoText.push(el.text)
+//       console.log(JSON.stringify(emoText))  
+//     }  
+// });
+// 
+// }
 //write this to fs somehow to reuse on reload?
 //const myEmos = emoText.slice()
 let myEmos = ["⌛","↕","⏸","ℹ","⏯","↩"]  
-
+//console.log(text)
 //emoji.text = myEmos[0] || "hex"
 
-
+//console.logs chosen emoji
+//Than can copy into element.text
+let emoText = [];
+(document.getElementsByClassName("multi") as any).forEach((el) => {
+  el.onclick = () => {
+    //let myEmoji = emoText[0] = el.text
+    console.log(JSON.stringify(el.text));
+  }  
+});
 
