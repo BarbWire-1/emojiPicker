@@ -163,17 +163,20 @@ const emo = (key: string) => {
 // }
 //write this to fs somehow to reuse on reload?
 //const myEmos = emoText.slice()
-let myEmos = ["⌛","↕","⏸","ℹ","⏯","↩"]  
+//let myEmos = ["⌛","↕","⏸","ℹ","⏯","↩"]  
 //console.log(text)
 //emoji.text = myEmos[0] || "hex"
 
-//console.logs chosen emoji
+//console.logs from multi view
 //Than can copy into element.text
-let emoText = [];
 (document.getElementsByClassName("multi") as any).forEach((el) => {
   el.onclick = () => {
     //let myEmoji = emoText[0] = el.text
     console.log(JSON.stringify(el.text));
   }  
 });
-
+//console.log from single view
+emoji.onclick = () => {
+  //let myEmoji = emoText[0] = el.text
+  console.log(JSON.stringify(emoji.text));
+}  
