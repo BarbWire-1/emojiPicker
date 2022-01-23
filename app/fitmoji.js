@@ -7,7 +7,7 @@ const emojisHex =
 ]
 
 const shortKeys =
-[":registered:", ":copyright:"]
+[":copyright:", ":registered:"]
 // search index in shortKeys
 //Then format equal index of emojisHex to glyph
 

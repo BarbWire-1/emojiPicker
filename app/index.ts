@@ -23,17 +23,17 @@ prevEmoji.text = "⏪";
 
 //FUNCTIONS
 //Formats array items to 0x00000
-let displayHex = (hex) => {return `0x${("00000" +hex.toString(16)).slice(-5)}`};
+let displayHex = (hex: number) => {return `0x${("00000" +hex.toString(16)).slice(-5)}`};
 
 //ASSIGNS EMOJIS
-const assignEmoji = (c) => { 
+const assignEmoji = (c: number) => { 
   
   emojiNumber.text = String(c);//how can I have 0xA9 here instaed 169???
   emojiNumber.text = `index: ${c}, (${displayHex(emojisHex[c])})`;
   emoji.text = fixedFromCharCode(emojisHex[c]);
 };
 
-const assignMulti = (factor) => {
+const assignMulti = (factor: number) => {
   multiview.getElementsByClassName("multi").forEach((el) => {
         
     let index = Number(el.id)+(30*factor);
@@ -59,40 +59,7 @@ viewButton.onclick = () => {
 // single view
 
   
-  nextEmoji.onclick = () => {
-    
-    if (mode === 0) {
-    
-      if(counter<n) {
-        counter++;
-        let c = counter % n;
-        assignEmoji(c)
-      }
-    } else {
-  
-      assignMulti(factor)
-      factor++;
-      factor %= Math.ceil(n/30)
-    };
-  }
-  prevEmoji.onclick = () => {
-    if (mode === 0) {
-      
-      if(counter>0) {
-        counter--;
-        let c = counter % n;
-        assignEmoji(c);
-      } 
-    } else {
-        //TODO here is something wrong
-        //needs 2 clicks to turn
-        if(factor>0 ){
-          factor--;
-          assignMulti(factor);
-          factor %= Math.ceil(n/30)
-        }
-    };
-  };
+  loopSymbols();
 }
 //console.log(document.getElementById("test").text = "\u{1f36b}");
 console.log("⭐")
@@ -103,13 +70,50 @@ console.log('\u{1F647}')//NOT WORKING
 //emoji.text= '\u{1F647}'
 //emoji.text = ":capricorn:"
 
-const emo = (key,value) => {
- 
-  shortKeys[key]= fixedFromCharCode(shortKeys[value]);
+const emo = (key: string) => {
+  let i= shortKeys.indexOf(key);
+  return fixedFromCharCode(emojisHex[i]);
 }
 
-console.log((shortKeys[0]).valueOf())
+console.log(emo(":copyright:"))
 
+
+function loopSymbols() {
+  nextEmoji.onclick = () => {
+
+    if (mode === 0) {
+
+      if (counter < n) {
+        counter++;
+        let c = counter % n;
+        assignEmoji(c);
+      }
+    } else {
+
+      assignMulti(factor);
+      factor++;
+      factor %= Math.ceil(n / 30);
+    };
+  };
+  prevEmoji.onclick = () => {
+    if (mode === 0) {
+
+      if (counter > 0) {
+        counter--;
+        let c = counter % n;
+        assignEmoji(c);
+      }
+    } else {
+      //TODO here is something wrong
+      //needs 2 clicks to turn
+      if (factor > 0) {
+        factor--;
+        assignMulti(factor);
+        factor %= Math.ceil(n / 30);
+      }
+    };
+  };
+}
 //emoji.text = fixedFromCharCode(0x1F372);
 
 //TODO check and really understand the polyfill
