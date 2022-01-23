@@ -46,7 +46,7 @@ let counter = 0;
 let mode = 0;
 let factor = 0;
 
-//TODO decide whether to keep different modes
+
 // multi could be sufficient
 // SWITCHES VIEWMODE
 viewButton.onclick = () => {
@@ -56,10 +56,6 @@ viewButton.onclick = () => {
   //console.log(`mode: ${mode}`)
   multiview.style.display = mode === 0 ? "none" : "inline";
   single.style.display = mode === 1 ? "none" : "inline";
-// CLICK THROUGH EMOJIS 
-// single view
-
-  
   loopSymbols();
 }
 
@@ -102,19 +98,10 @@ function loopSymbols() {
 }
 
 
-//TODO check and really understand the polyfill
-//TODO check why astral plane chars don't work. other format needed?
-//TODO if all the >FFFF doesn't work, go with simply this '\u{XXXX}' format!!
-//TODO, way to convert unicode into symbol directly in code-view? 
-
-//TODO check logic in counters/clicks it#s somehow working, but not to 100% what I want
-
-
 const emo = (key: string) => {
   let i= shortKeys.indexOf(key);
   return fixedFromCharCode(emojisHex[i]);
 }
-
 
 //console.logs from multi view
 //Than can copy into element.text
@@ -127,4 +114,55 @@ const emo = (key: string) => {
 emoji.onclick = () => {
   console.log(JSON.stringify(emoji.text));
 }  
+
+
+
+
+//TODO decide whether to keep different modes
+//TODO check and really understand the polyfill
+//TODO check why astral plane chars don't work. other format needed?
+//TODO if all the >FFFF doesn't work, go with simply this '\u{XXXX}' format!!
+//TODO, way to convert unicode into symbol directly in code-view? 
+
+//TODO check logic in counters/clicks it#s somehow working, but not to 100% what I want
+
+
+
+//TESTING SOME THEORY_________________________________________________________________________________________
+
+// console.log(encodeURIComponent('\u231a'))
+// function fixedEncodeURI(str) {
+//   return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
+// }
+
+
+
+
+// console.log("🌎".length)//2
+// let encoded = (fixedEncodeURI("🌎"))
+// let decoded = decodeURIComponent(encoded);
+// console.log(decoded)
+// console.log(encoded.toString())
+// 
+// function p2_idx_to_p1_idx (p2_idx, text) {
+//   var p1_idx = p2_idx;
+//   for (var i = 0; i < text.length && i < p2_idx; i++) {
+//       var char_code = text.charCodeAt(i);
+//       // check for the first half of a surrogate pair
+//       if (char_code >= 0xD800 && char_code < 0xDC00) {
+//           p1_idx -= 1;
+//       }
+//   }
+//   return p1_idx;
+// }
+// 
+// //@ts-ignore
+// console.log('\x41\x42\x43')//ABC 
+// console.log(encoded)//%F0%9F%8C%8E 
+// console.log('\xf0\x9f\x8c\x8e')//ð
+// 
+// console.log('💩' == '\uD83D\uDCA9')
+// console.log('💩')// ?????
+// console.log('\uD83D\uDCA9')// ?????
+
 
