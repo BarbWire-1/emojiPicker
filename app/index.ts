@@ -156,7 +156,7 @@ emoji.onclick = () => {
   console.log(JSON.stringify(emoText)) 
   
 }
-//write this to fs?
+//write this to fs somehow to reuse on reload?
 const myEmos = emoText.slice()
 //let myEmos = ["☺","⌛"]
 
