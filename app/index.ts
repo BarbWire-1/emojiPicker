@@ -1,4 +1,5 @@
 
+import { copy } from "blockly";
 import document from "document";
 import {emojisHex, shortKeys} from "./fitmoji";
 import { fixedFromCharCode } from "./readUTF";
@@ -7,6 +8,7 @@ import { fixedFromCharCode } from "./readUTF";
 const buttons = document.getElementById("buttons");
 const single = document.getElementById("single") as GraphicsElement;
 const multiview = document.getElementById("multiview") as GraphicsElement;
+
 
 // search in containers
 const emojiNumber = single.getElementById("emojiCode");
@@ -119,11 +121,11 @@ function loopSymbols() {
     
  //TESTING 
  //console.log(document.getElementById("test").text = "\u{1f36b}");
-console.log("⭐")
-console.log("⭐".length)//1
-console.log("🍩")
-console.log("🍩".length)//2
-console.log('\u{1F647}')//NOT WORKING
+// console.log("⭐")
+// console.log("⭐".length)//1
+// console.log("🍩")
+// console.log("🍩".length)//2
+// console.log('\u{1F647}')//NOT WORKING
 //emoji.text= '\u{1F647}'
 //emoji.text = ":capricorn:"
 
@@ -132,13 +134,33 @@ const emo = (key: string) => {
   return fixedFromCharCode(emojisHex[i]);
 }
 
-console.log(emo(":copyright:"))
-console.log("🙂")// from mac symbols. Not working
-//possible to get a list of supported fitmojis in there?
-console.log("♞")//HAH! This simple one does!
-//In console, but NOT displayed as no match in fitmoji??? => NO GLYPH
+// console.log(emo(":copyright:"))
+// console.log("🙂")// from mac symbols. Not working
+// //possible to get a list of supported fitmojis in there?
+// console.log("♞")//HAH! This simple one does!
+// //In console, but NOT displayed as no match in fitmoji??? => NO GLYPH
+// 
+//   //emoji.text="👽"//gets read, but not displayed
 
-  //emoji.text="👽"//gets read, but not displayed
+
+
+
+//now pushes the chosen single emojis to an array,
+//console logs array, then I copy that to a fix one 
+//to use in the project
+//all fitmoji stuff could be removed.
+//VERRRRRRY cumbersome
+let emoText=[];
+emoji.onclick = () => {
+  emoText.push(emoji.text)
+  console.log(JSON.stringify(emoText)) 
+  
+}
+//write this to fs?
+const myEmos = emoText.slice()
+//let myEmos = ["☺","⌛"]
+
+emoji.text = myEmos[0] || "hex"
 
 
 
