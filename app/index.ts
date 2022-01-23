@@ -121,6 +121,8 @@ function loopSymbols() {
 //TODO if all the >FFFF doesn't work, go with simply this '\u{XXXX}' format!!
 // TODO, way to convert unicode into symbol directly in code-view? 
 
+//TODO check logic in counters/clicks it#s somehow working, but not to 100% what I want
+
 // THIS DOESN'T WORK ON USES???
 // multiview.getElementsByClassName("multi").forEach((el) => {
 //   let index = Number(el.id);
