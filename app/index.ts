@@ -101,7 +101,7 @@ console.log("🍩")
 console.log("🍩".length)//2
 console.log('\u{1F647}')//NOT WORKING
 //emoji.text= '\u{1F647}'
-
+//emoji.text = ":capricorn:"
 
 
 
