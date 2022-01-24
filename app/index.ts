@@ -223,3 +223,6 @@ console.log('\u{FEFF}')//(BOM, byte order mark)
 console.log('\u0FEFF\u0D83D\u0DCA9')// ࿯FඃD්9   
 console.log('\u0FEFF\u0DCA9\u0D83D')//࿯F්9ඃD 
 console.log('\uFEFF\uDCA9\uD83D')// ������ 
+
+
+/// Maybe check my array. I didn't have really converted to hex for >FFFF. IDIOT!!!
