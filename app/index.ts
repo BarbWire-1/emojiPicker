@@ -129,7 +129,7 @@ emoji.onclick = () => {
 
 
 
-//TESTING SOME THEORY_________________________________________________________________________________________
+//TESTING SOME (TRIAL AND ERROR)THEORY_________________________________________________________________________________________
 
 // console.log(encodeURIComponent('\u231a'))
 // function fixedEncodeURI(str) {
@@ -173,4 +173,53 @@ emoji.onclick = () => {
 // console.log('\xF0\x9F\x92\xA9') //ð©
 // console.log('%F0%9F%92%A9')//%F0%9F%92%A9 
 // console.log('\u{1F4A9}')// ?????
+console.log("\u{D83D}\u{DCA9}")//??????
+// 
+// emoji.text=('\u{a9}')//syntax for U+A9 gets displayed
+// emoji.text=('\u{1f600}')// gets not displayed
+// emoji.text = "(\u{D83D}) + (\u{DCA9})"
+console.log(emoji.text)//🍄 `
+//console.log(decodeURIComponent(emoji.text))//Unhandled exception: URIError: Invalid CESU8 string.
+//console.log(decodeURIComponent('🍄'))
 
+
+function p2_idx_to_p1_idx (p2_idx, text) {
+  var p1_idx = p2_idx;
+  for (var i = 0; i < text.length && i < p2_idx; i++) {
+      var char_code = text.charCodeAt(i);
+      console.log(char_code.toString(16))//d83d \n dca9
+      // check for the first half of a surrogate pair
+      if (char_code >= 0xD800 && char_code < 0xDC00) {
+          p1_idx -= 1;
+      }
+  }
+  return p1_idx;
+}
+
+
+// function p1_idx_to_p2_idx (p1_idx, text) {
+//   var p2_idx = p1_idx;
+//   for (var i = 0; i < text.length && i < js_idx; i++) { //js_idx???
+//       var char_code = text.charCodeAt(i);
+//       // check for the first half of a surrogate pair
+//       if (char_code >= 0xD800 && char_code < 0xDC00) {
+//           p2_idx += 1;
+//       }
+//   }
+//   return p2_idx;
+// }
+// console.log(p2_idx_to_p1_idx (1, '💩'))
+let test = encodeURIComponent('💩')//This is U+1F4A9 encoded to %F0%9F%92%A9 
+console.log(test)
+console.log(decodeURIComponent('%F0%9F%92%A9' ))//������
+//mushroom without "trailing"
+console.log(encodeURIComponent('🍄'))//%F0%9F%8D%84
+console.log(decodeURIComponent('%F0%9F%8D%84'))//������
+
+//'🍄'// this is U+1F344
+console.log('🍄')//������
+p2_idx_to_p1_idx (2, '🍄')//UTF-16 surrogate pairs \ud83c\udf44
+console.log('\u{FEFF}')//(BOM, byte order mark)
+console.log('\u0FEFF\u0D83D\u0DCA9')// ࿯FඃD්9   
+console.log('\u0FEFF\u0DCA9\u0D83D')//࿯F්9ඃD 
+console.log('\uFEFF\uDCA9\uD83D')// ������ 
