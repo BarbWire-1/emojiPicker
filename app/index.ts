@@ -253,7 +253,19 @@ console.log(`mushroomHex: ${mushroomHex}`);// mushroomHex: %F0%9F%8D%84
 
 let mushroomString = hex2String(mushroomHex);
 console.log(mushroomString)// ������
-console.log(hex2String("\ud83d\ude0d"))
+console.log(hex2String("\ud83d\ude0d"))//this syntax would work for ASCII, but can't test here as codePointAt not working
+
+
+function ConvertStringToHex(str) {
+  var arr = [];
+  for (var i = 0; i < str.length; i++) {
+         arr[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+  }
+  return "\\u" + arr.join("\\u");
+}
+
+console.log(ConvertStringToHex('🍄'))//\ud83c\udf44 UTF-16/ F0 9F 8D 84	 UTF-8
+console.log(hex2String('%F0%9F%8D%84'	))// ������
 
 // //
 // 'ABC'.codePointAt(0)                        // 65
