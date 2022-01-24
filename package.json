@@ -61,6 +61,7 @@
 		"defaultLanguage": "en-US"
 	},
 	"dependencies": {
-		"core-js": "3.20.3"
+		"core-js": "3.20.3",
+		"uform": "^0.1.9"
 	}
 }

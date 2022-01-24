@@ -5,9 +5,11 @@ specifiers:
   '@fitbit/sdk-cli': ^1.7.3
   core-js: 3.20.3
   fitbit-sdk-types: ^7.0.5
+  uform: ^0.1.9
 
 dependencies:
   core-js: 3.20.3
+  uform: 0.1.9
 
 devDependencies:
   '@fitbit/sdk': 6.0.2
@@ -2926,6 +2928,10 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
+
+  /uform/0.1.9:
+    resolution: {integrity: sha512-D928BtwfV/PhbDKFj6J4/KRnXsXjpG37hUvUwg+o9inh1cWWu5LmUeqHe6Yvjea+eZFGxM/hsxGYPDWomeBMUw==}
+    dev: false
 
   /ultron/1.1.1:
     resolution: {integrity: sha512-UIEXBNeYmKptWH6z8ZnqTeS8fV74zG0/eRU9VGkpzz+LIJNs8W/zM/L+7ctCkRrgbNnnR0xxw4bKOr0cW0N0Og==}

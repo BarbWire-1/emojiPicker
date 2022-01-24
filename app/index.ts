@@ -3,6 +3,7 @@
 import document from "document";
 import {emojisHex, shortKeys} from "./fitmoji";
 import { fixedFromCharCode } from "./readUTF";
+import {normalize} from "./unorm"
 
 // containers
 const buttons = document.getElementById("buttons");
@@ -280,4 +281,12 @@ console.log(hex2String('%F0%9F%8D%84'	))// ������
 // '\ud83d\ude0d'.codePointAt(1).toString(16)  // de0d
 // 
 // 'ABC'.codePointAt(42)                       // undefined
+console.log('\ud83d'.concat('\ude0d'))
+// Initial string
 
+// U+1E9B: LATIN SMALL LETTER LONG S WITH DOT ABOVE
+// U+0323: COMBINING DOT BELOW
+let str = '\u1E9B\u0323';
+
+console.log('🍄'.length)//2
+'🍄'.normalize()
