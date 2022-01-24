@@ -114,5 +114,5 @@ if (!String.prototype.codePointAt) {
     }
   }());
 }
-export {fixedFromCharCode}
-  
+export { fixedFromCharCode}
+//WHY is the codePointAt not working???  

@@ -219,10 +219,53 @@ console.log(decodeURIComponent('%F0%9F%8D%84'))//������
 //'🍄'// this is U+1F344
 console.log('🍄')//������
 p2_idx_to_p1_idx (2, '🍄')//UTF-16 surrogate pairs \ud83c\udf44
-console.log('\u{FEFF}')//(BOM, byte order mark)
+console.log('\u{FEFF}')//(BOM, byte order mark)would be noglyph, if wrong order
 console.log('\u0FEFF\u0D83D\u0DCA9')// ࿯FඃD්9   
 console.log('\u0FEFF\u0DCA9\u0D83D')//࿯F්9ඃD 
-console.log('\uFEFF\uDCA9\uD83D')// ������ 
+console.log('\uFEFF\uDCA9\uD83D')// ������ //F::: doesn't make a diff between order
+console.log('\uFEFF\uD83D\uDCAD')// ������ 
+emoji.text = '💩'
 
 
 /// Maybe check my array. I didn't have really converted to hex for >FFFF. IDIOT!!!
+console.log(('\u{d83d}\u{dcad}'))
+console.log(encodeURIComponent('\u{1F47B}'))//UTF-8 to HEX would be 'D8 3D DC 7B' im UF-16BE and '61 216 123 220' in UT-F16LE
+
+const string2Hex = (string) => {
+  return encodeURIComponent(string);
+};
+
+const hex2String = (hex)=> {
+  return decodeURIComponent(hex.replace(/\\/g, "%"));
+};
+
+//Converting U+2600 to hex and back to string
+let sunHex = string2Hex("☀");
+console.log(`sunHex: ${sunHex}`);// sunHex: %E2%98%80 
+
+let sunString = hex2String(sunHex);
+console.log(sunString)// ☀ 
+
+
+//Converting U+1F344 to hex and back to string
+let mushroomHex = string2Hex('🍄');
+console.log(`mushroomHex: ${mushroomHex}`);// mushroomHex: %F0%9F%8D%84 
+
+let mushroomString = hex2String(mushroomHex);
+console.log(mushroomString)// ������
+console.log(hex2String("\ud83d\ude0d"))
+
+// //
+// 'ABC'.codePointAt(0)                        // 65
+// 'ABC'.codePointAt(0).toString(16)           // 41
+// 
+// '😍'.codePointAt(0)                         // 128525
+// '\ud83d\ude0d'.codePointAt(0)               // 128525
+// '\ud83d\ude0d'.codePointAt(0).toString(16)  // 1f60d
+// 
+// '😍'.codePointAt(1)                         // 56845
+// '\ud83d\ude0d'.codePointAt(1)               // 56845
+// '\ud83d\ude0d'.codePointAt(1).toString(16)  // de0d
+// 
+// 'ABC'.codePointAt(42)                       // undefined
+
