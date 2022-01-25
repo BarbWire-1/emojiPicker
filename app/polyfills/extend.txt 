@@ -1,0 +1,9 @@
+instead
+Array.prototype.shuffle = function () { ... };
+
+do
+interface Array {
+  shuffle: () => any; // <-- Whatever signature you want.
+}
+
+needs interfaces for the polyfills in 🤷🏼‍♀️ts
