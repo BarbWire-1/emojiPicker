@@ -26,18 +26,34 @@ nextEmoji.text = "⏩";
 prevEmoji.text = "⏪";
 
 // FUNCTIONS
-// Formats array items text to 0x00000
+// Formats array text to 0x00000 to display
 let displayHex = (hex: number) => {
   return `0x${(`00000${hex.toString(16)}`).slice(-5)}`
 };
 
+// CONVERSION HEX TO STRING
+// NOT working for >FFFF
+// TODO check out the regex for conversion
+function fixedFromCharCode (codePoint) {
+  if (codePoint > 0xFFFF) {
+      codePoint -= 0x10000;
+      //difference to above is the missing (codePoint % 0x400), instead (codePoint & 0x3FF)
+      return String.fromCharCode(0xD800 + 
+        (codePoint >> 10), 0xDC00 + 
+        (codePoint & 0x3FF));
+  }
+  else {
+      return String.fromCharCode(codePoint);
+  }
+}
+
 // ASSIGNS EMOJIS
 // single emoji
-const assignEmoji = (c: number) :void => { 
+function assignEmoji(c: number): void {
   emojiNumber.text = String(c);
   emojiNumber.text = `index: ${c}, (${displayHex(emojisHex[c])})`;
   emoji.text = fixedFromCharCode(emojisHex[c]);
-};
+}
 
 const assignMulti = (factor: number) :void => {
   // 30 elements, load next 30 on click
@@ -69,8 +85,8 @@ viewButton.onclick = ()  => {
   return mode;
 }
 
-//TODO function to change counter +-1 on changing direction
-// browse to next
+// BROWSE...
+// to next
 nextEmoji.onclick = () :void => {
   if (mode === 0) { // single view
     if (counter < n) {
@@ -79,10 +95,10 @@ nextEmoji.onclick = () :void => {
       assignEmoji(counter);
     };
       
-  } else if (factor < n / 30){
+  } else if (factor < n / 30){ // multiview 
     factor++;
     factor %= Math.ceil(n / 30);
-    assignMulti(factor); // multiview 
+    assignMulti(factor); 
   };
 };
   
