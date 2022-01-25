@@ -313,4 +313,4 @@
     ns.nfkc = nfkc;
  })();
  
- export {normalize}
+ 

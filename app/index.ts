@@ -3,7 +3,7 @@
 import document from "document";
 import {emojisHex, shortKeys} from "./fitmoji";
 import { fixedFromCharCode } from "./readUTF";
-import {normalize} from "./unorm"
+import "./unorm"
 
 // containers
 const buttons = document.getElementById("buttons");
@@ -225,7 +225,7 @@ console.log('\u0FEFF\u0D83D\u0DCA9')// ࿯FඃD්9
 console.log('\u0FEFF\u0DCA9\u0D83D')//࿯F්9ඃD 
 console.log('\uFEFF\uDCA9\uD83D')// ������ //F::: doesn't make a diff between order
 console.log('\uFEFF\uD83D\uDCAD')// ������ 
-emoji.text = '💩'
+//emoji.text = '💩'
 
 
 /// Maybe check my array. I didn't have really converted to hex for >FFFF. IDIOT!!!
@@ -289,4 +289,5 @@ console.log('\ud83d'.concat('\ude0d'))
 let str = '\u1E9B\u0323';
 
 console.log('🍄'.length)//2
-'🍄'.normalize()
+
+
