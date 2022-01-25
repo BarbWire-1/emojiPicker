@@ -294,8 +294,9 @@ console.log('\u1E9B')//ẛ
 console.log('\u0323')// ̣ 
 console.log('🍄'.length)//2
 
-//this doesn't take any args... wtf?
-console.log('😍'.codePointAt())//128525
+console.log('😍'.length)//2
+console.log('😍'.codePointAt(0))//128525 returns codePoint(0)
+console.log('😍'.codePointAt(1))//56845
 
 
 
