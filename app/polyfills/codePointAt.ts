@@ -1,6 +1,5 @@
-
 interface String {
-  codePointAt (num): number; // <-- Whatever signature you want.
+  codePointAt (num): number;
 }
 /*! https://mths.be/codepointat v0.2.0 by @mathias */
 

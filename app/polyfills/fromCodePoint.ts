@@ -1,4 +1,7 @@
-if (!String.fromCodePoint) (function(stringFromCharCode) {
+interface String {
+  fromCodePoint (num: number): string;
+}
+ (function(stringFromCharCode) {
   var fromCodePoint = function(_) {
     var codeUnits = [], codeLen = 0, result = "";
     for (var index=0, len = arguments.length; index !== len; ++index) {
@@ -33,7 +36,7 @@ if (!String.fromCodePoint) (function(stringFromCharCode) {
     });
   } catch(e) {
    console.error("I didn't work as expected!")
-    String.fromCodePoint = fromCodePoint;
+    //String.fromCodePoint = fromCodePoint;
   }
 }(String.fromCharCode));
 

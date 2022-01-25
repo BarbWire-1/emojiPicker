@@ -297,8 +297,11 @@ console.log('🍄'.length)//2
 console.log('😍'.length)//2
 console.log('😍'.codePointAt(0))//128525 returns codePoint(0)
 console.log('😍'.codePointAt(1))//56845
+//console.log( '😍'.fromCodePoint(0x1E9B))
 //TODO add interfaces for polyfills
 //TODO test file, clean app-code
 
+//emoji.text = '😍'.fromCodePoint(0)
 
+//TODO check fromCodePoint
 

@@ -13,7 +13,7 @@
    
    <svg id="single">
       <text id="emojiCode" x="50%" y="50%-80" font-size="25" text-anchor="middle" fill="white" text-length="25">BROWSE EMOJIS</text>
-      <text id="emoji" x="50%" y="50%+50" font-size="100"  text-anchor="middle" fill="white" pointer-events="visible" font-family="Fitmoji">🍄</text>
+      <text id="emoji" x="50%" y="50%+50" font-size="100"  text-anchor="middle" fill="white" pointer-events="visible" >🍄</text>
    </svg>
    
   
