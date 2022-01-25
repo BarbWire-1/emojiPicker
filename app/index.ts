@@ -1,18 +1,18 @@
 
 import document from "document";
 import {emojisHex, shortKeys} from "./fitmoji";
-import {fixedFromCharCode} from "./polyfills/fixedFromCharCode";
+//import {fixedFromCharCode} from "./polyfills/fixedFromCharCode";
 import "./polyfills/codePointAt";
 import "./polyfills/fromCodePoint";
 //import "./polyfills/unorm"
 
-// containers
+// CONTAINERS
 const buttons = document.getElementById("buttons") as GroupElement;
 const single = document.getElementById("single") as GroupElement;
 const multiview = document.getElementById("multiview") as GroupElement;
 
 
-// search in containers
+// GET FROM CONTAINERS
 const emojiNumber = single.getElementById("emojiCode") as TextElement;
 const emoji = single.getElementById("emoji") as TextElement;
 const viewButton = buttons.getElementById("viewButton") as RectElement;
@@ -37,7 +37,6 @@ let displayHex = (hex: number) => {
 function fixedFromCharCode (codePoint) {
   if (codePoint > 0xFFFF) {
       codePoint -= 0x10000;
-      //difference to above is the missing (codePoint % 0x400), instead (codePoint & 0x3FF)
       return String.fromCharCode(0xD800 + 
         (codePoint >> 10), 0xDC00 + 
         (codePoint & 0x3FF));
@@ -47,7 +46,7 @@ function fixedFromCharCode (codePoint) {
   }
 }
 
-// ASSIGNS EMOJIS
+// ASSIGN EMOJIS
 // single emoji
 function assignEmoji(c: number): void {
   emojiNumber.text = String(c);
@@ -70,7 +69,8 @@ let factor: number = 0; // to multiply index for multiview
 
 
 // multi could be sufficient
-// SWITCHES VIEWMODE
+// SWITCH VIEWMODE
+// in single view incl index in array and HEX code
 viewButton.onclick = ()  => {
   mode++;
   mode %=2;
@@ -86,7 +86,7 @@ viewButton.onclick = ()  => {
 }
 
 // BROWSE...
-// to next
+// ...to next
 nextEmoji.onclick = () :void => {
   if (mode === 0) { // single view
     if (counter < n) {
@@ -102,7 +102,7 @@ nextEmoji.onclick = () :void => {
   };
 };
   
-// browse to previous
+// ...to previous
 prevEmoji.onclick = () :void => {
   if (mode === 0) { // singleview
     if (counter > 0) {
@@ -126,7 +126,7 @@ const emo = (key: string) => {
   let i: number = shortKeys.indexOf(key);
   return fixedFromCharCode(emojisHex[i]);
 };
-//emoji.text = emo(":copyright:")
+//console.log(emo(":copyright:")); // © 
 
 
 // CONSOLE.LOG CLICKED ITEM
