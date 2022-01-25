@@ -1,5 +1,9 @@
+
+interface String {
+  codePointAt (): number; // <-- Whatever signature you want.
+}
 /*! https://mths.be/codepointat v0.2.0 by @mathias */
-if (!String.prototype.codePointAt) {
+
   (function() {
     'use strict'; // needed to support `apply`/`call` with `undefined`/`null`
     var defineProperty = (function() {
@@ -7,6 +11,7 @@ if (!String.prototype.codePointAt) {
       try {
         var object = {};
         var $defineProperty = Object.defineProperty;
+        //@ts-ignore
         var result = $defineProperty(object, object, object) && $defineProperty;
       } catch(error) {}
       return result;
@@ -48,7 +53,7 @@ if (!String.prototype.codePointAt) {
         'writable': true
       });
     } else {
+      //@ts-ignore
       String.prototype.codePointAt = codePointAt;
     }
   }());
-}

@@ -294,5 +294,9 @@ console.log('\u1E9B')//ẛ
 console.log('\u0323')// ̣ 
 console.log('🍄'.length)//2
 
+//this doesn't take any args... wtf?
+console.log('😍'.codePointAt())//128525
+
+
 
 
