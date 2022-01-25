@@ -26,19 +26,22 @@ const prevEmoji = buttons.getElementById("lastEmoji");
 nextEmoji.text = "⏩";
 prevEmoji.text = "⏪";
 
-//FUNCTIONS
-//Formats array items to 0x00000
-let displayHex = (hex: number) => {return `0x${("00000" +hex.toString(16)).slice(-5)}`};
+// FUNCTIONS
+// Formats array items text to 0x00000
+let displayHex = (hex: number) => {
+  return `0x${("00000" +hex.toString(16)).slice(-5)}`
+};
 
 //ASSIGNS EMOJIS
+// single emoji
 const assignEmoji = (c: number) => { 
-  
-  emojiNumber.text = String(c);//how can I have 0xA9 here instaed 169???
+  emojiNumber.text = String(c);
   emojiNumber.text = `index: ${c}, (${displayHex(emojisHex[c])})`;
   emoji.text = fixedFromCharCode(emojisHex[c]);
 };
 
 const assignMulti = (factor: number) => {
+  // 30 elements, load next 30 on click
   multiview.getElementsByClassName("multi").forEach((el: TextElement) => {
     let index = Number(el.id)+(30*factor);
     el.text = fixedFromCharCode(emojisHex[index]);
@@ -46,9 +49,9 @@ const assignMulti = (factor: number) => {
 }
 
 const n = emojisHex.length;
-let counter = 0;
-let mode = 0;
-let factor = 0;
+let counter = 0; // to switch to next item in single view
+let mode = 0; // to switch between single/multiview
+let factor = 0; // to multiply index for multiview
 
 
 // multi could be sufficient
@@ -65,25 +68,24 @@ viewButton.onclick = () => {
 
 
 function loopSymbols() {
+  // browse to next
   nextEmoji.onclick = () => {
-
-    if (mode === 0) {
-
+    if (mode === 0) { // single view
       if (counter < n) {
         counter++;
         let c = counter % n;
         assignEmoji(c);
       }
     } else {
-
-      assignMulti(factor);
+      assignMulti(factor); // multiview
       factor++;
       factor %= Math.ceil(n / 30);
     };
   };
+  
+  // browse to previous
   prevEmoji.onclick = () => {
-    if (mode === 0) {
-
+    if (mode === 0) { // singleview
       if (counter > 0) {
         counter--;
         let c = counter % n;
@@ -92,7 +94,7 @@ function loopSymbols() {
     } else {
       //TODO here is something wrong
       //needs 2 clicks to turn
-      if (factor > 0) {
+      if (factor > 0) { // multiview
         factor--;
         assignMulti(factor);
         factor %= Math.ceil(n / 30);
@@ -101,20 +103,24 @@ function loopSymbols() {
   };
 }
 
-
+// function for shortkeys
+// currently not in use
 const emo = (key: string) => {
   let i= shortKeys.indexOf(key);
   return fixedFromCharCode(emojisHex[i]);
 }
 
-//console.logs from multi view
-//Than can copy into element.text
+
+// CONSOLE.LOG CLICKED ITEM
+// then can copy into element.text
+
+// from multi view
 (document.getElementsByClassName("multi") as any).forEach((el) => {
   el.onclick = () => {
     console.log(JSON.stringify(el.text));
   }  
 });
-
+// from single view
 emoji.onclick = () => {
   console.log(JSON.stringify(emoji.text));
 }  
