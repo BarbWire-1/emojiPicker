@@ -171,3 +171,5 @@ console.log('😍'.codePointAt(1))//56845
 
 //TODO check fromCodePoint
 
+console.log(String.fromCharCode(0x1f600))
+emoji.text = String.fromCharCode(0x1f600)

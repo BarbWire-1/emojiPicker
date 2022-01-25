@@ -2,7 +2,19 @@ interface String {
   fromCodePoint (num: number): string;
 }
  (function(stringFromCharCode) {
+  var defineProperty = (function() {
+    // IE 8 only supports `Object.defineProperty` on DOM elements
+    try {
+      var object = {};
+      var $defineProperty = Object.defineProperty;
+      //@ts-ignore
+      var result = $defineProperty(object, object, object) && $defineProperty;
+    } catch(error) {}
+    return result;
+  }());
   var fromCodePoint = function(_) {
+    'use strict'; // needed to support `apply`/`call` with `undefined`/`null`
+    
     var codeUnits = [], codeLen = 0, result = "";
     for (var index=0, len = arguments.length; index !== len; ++index) {
       var codePoint = +arguments[index];
@@ -30,14 +42,16 @@ interface String {
     }
     return result + stringFromCharCode.apply(null, codeUnits);
   };
-  try { // IE 8 only supports `Object.defineProperty` on DOM elements
+  if (defineProperty) {// IE 8 only supports `Object.defineProperty` on DOM elements
     Object.defineProperty(String, "fromCodePoint", {
-      "value": fromCodePoint, "configurable": true, "writable": true
+      "value": fromCodePoint, 
+      "configurable": true, 
+      "writable": true
     });
-  } catch(e) {
-   console.error("I didn't work as expected!")
-    //String.fromCodePoint = fromCodePoint;
+  } else {
+    //@ts-ignore
+    String.prototype.fromCodePoint = String.fromCodePoint;
   }
-}(String.fromCharCode));
+}());
 
 //TODO check this function (not working)

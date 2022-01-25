@@ -130,5 +130,8 @@ emoji.onclick = () => {
 
 //TODO check logic in counters/clicks it#s somehow working, but not to 100% what I want
 
-
+console.log(String.fromCharCode(0x1f600))//  
+emoji.text = String.fromCharCode(0x1f600)//no glyph
+console.log(fixedFromCharCode(0x1f600))//������
+//String.fromCodePoint(0x1f600)//fromCodePoint not defined.... buhuhuuuuuu
 
