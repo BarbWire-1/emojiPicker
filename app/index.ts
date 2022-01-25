@@ -2,8 +2,10 @@
 
 import document from "document";
 import {emojisHex, shortKeys} from "./fitmoji";
-import { fixedFromCharCode } from "./readUTF";
-import "./unorm"
+import { fixedFromCharCode } from "./polyfills/readUTF";
+import "./polyfills/codePointAt"
+import "./polyfills/fromCodePoint"
+//import "./polyfills/unorm"
 
 // containers
 const buttons = document.getElementById("buttons");
@@ -289,5 +291,6 @@ console.log('\ud83d'.concat('\ude0d'))
 let str = '\u1E9B\u0323';
 
 console.log('🍄'.length)//2
+
 
 
