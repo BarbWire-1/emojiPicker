@@ -288,8 +288,10 @@ console.log('\ud83d'.concat('\ude0d'))
 
 // U+1E9B: LATIN SMALL LETTER LONG S WITH DOT ABOVE
 // U+0323: COMBINING DOT BELOW
-let str = '\u1E9B\u0323';
-
+let str = '\u1E9B\u0323';//ẛ̣  WTF??
+console.log(str)
+console.log('\u1E9B')//ẛ
+console.log('\u0323')// ̣ 
 console.log('🍄'.length)//2
 
 
