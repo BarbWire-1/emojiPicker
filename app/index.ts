@@ -1,4 +1,3 @@
-// polyfill all `core-js` features, including early-stage proposals:
 
 import document from "document";
 import {emojisHex, shortKeys} from "./fitmoji";
@@ -32,7 +31,7 @@ let displayHex = (hex: number) => {
   return `0x${(`00000${hex.toString(16)}`).slice(-5)}`
 };
 
-//ASSIGNS EMOJIS
+// ASSIGNS EMOJIS
 // single emoji
 const assignEmoji = (c: number) :void => { 
   emojiNumber.text = String(c);
@@ -72,38 +71,37 @@ viewButton.onclick = ()  => {
 
 //TODO function to change counter +-1 on changing direction
 // browse to next
-  nextEmoji.onclick = () :void => {
-    if (mode === 0) { // single view
-      if (counter < n) {
-        counter++;
-        counter %= n;
-        assignEmoji(counter);
-      };
+nextEmoji.onclick = () :void => {
+  if (mode === 0) { // single view
+    if (counter < n) {
+      counter++;
+      counter %= n;
+      assignEmoji(counter);
+    };
       
-    } else if (factor < n / 30){
-      factor++;
-      factor %= Math.ceil(n / 30);
-      assignMulti(factor); // multiview 
-    };
+  } else if (factor < n / 30){
+    factor++;
+    factor %= Math.ceil(n / 30);
+    assignMulti(factor); // multiview 
   };
+};
   
-  // browse to previous
-  prevEmoji.onclick = () :void => {
-    if (mode === 0) { // singleview
-      if (counter > 0) {
-        counter--;
-        counter %= n;
-        assignEmoji(counter);
-        
-      }
-    } else {
-      if (factor > 0) { // multiview
-        factor--;
-        assignMulti(factor);
-        factor %= Math.ceil(n / 30);
-      }
+// browse to previous
+prevEmoji.onclick = () :void => {
+  if (mode === 0) { // singleview
+    if (counter > 0) {
+      counter--;
+      counter %= n;
+      assignEmoji(counter); 
+    };
+  } else {
+    if (factor > 0) { // multiview
+      factor--;
+      assignMulti(factor);
+      factor %= Math.ceil(n / 30);
     };
   };
+};
 
 
 // function for shortkeys
@@ -113,6 +111,7 @@ const emo = (key: string) => {
   return fixedFromCharCode(emojisHex[i]);
 };
 //emoji.text = emo(":copyright:")
+
 
 // CONSOLE.LOG CLICKED ITEM
 // then can copy into element.text
@@ -132,12 +131,8 @@ emoji.onclick = () :void => {
 
 
 //TODO decide whether to keep different modes
-//TODO check and really understand the polyfill
-//TODO check why astral plane chars don't work. other format needed?
-//TODO if all the >FFFF doesn't work, go with simply this '\u{XXXX}' format!!
-//TODO, way to convert unicode into symbol directly in code-view? 
-
-//TODO check logic in counters/clicks it#s somehow working, but not to 100% what I want
+//TODO check and really understand logic for normalization(s)
+//TODO if all the >FFFF doesn't work, go with 0nly <=FFFF!
 
 // console.log(String.fromCharCode(0x1f600))//  
 // emoji.text = String.fromCharCode(0x1f600)//no glyph
