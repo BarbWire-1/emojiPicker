@@ -2,7 +2,7 @@
 
 import document from "document";
 import {emojisHex, shortKeys} from "./fitmoji";
-import { fixedFromCharCode } from "./polyfills/readUTF";
+import {fixedFromCharCode} from "./polyfills/fixedFromCharCode";
 import "./polyfills/codePointAt";
 import "./polyfills/fromCodePoint";
 //import "./polyfills/unorm"
@@ -60,29 +60,30 @@ viewButton.onclick = ()  => {
   mode++;
   mode %=2;
   modeText.text = mode === 0 ? "single view" : "multi view";
-  //console.log(`mode: ${mode}`)
   multiview.style.display = mode === 0 ? "none" : "inline";
   single.style.display = mode === 1 ? "none" : "inline";
+  if (mode === 0){
+    assignEmoji(counter)
+  } else {
+    assignMulti(factor)
+  }
   return mode;
-  //loopSymbols();
 }
 
 //TODO function to change counter +-1 on changing direction
-//function loopSymbols() {
-  // browse to next
+// browse to next
   nextEmoji.onclick = () :void => {
     if (mode === 0) { // single view
       if (counter < n) {
-        assignEmoji(counter);
         counter++;
         counter %= n;
-        
-      }
+        assignEmoji(counter);
+      };
+      
     } else if (factor < n / 30){
-      assignMulti(factor); // multiview
       factor++;
       factor %= Math.ceil(n / 30);
-      
+      assignMulti(factor); // multiview 
     };
   };
   
@@ -96,8 +97,6 @@ viewButton.onclick = ()  => {
         
       }
     } else {
-      //TODO here is something wrong
-      //needs 2 clicks to turn
       if (factor > 0) { // multiview
         factor--;
         assignMulti(factor);
@@ -105,7 +104,7 @@ viewButton.onclick = ()  => {
       }
     };
   };
-//};
+
 
 // function for shortkeys
 // currently not in use
@@ -113,7 +112,7 @@ const emo = (key: string) => {
   let i: number = shortKeys.indexOf(key);
   return fixedFromCharCode(emojisHex[i]);
 };
-
+//emoji.text = emo(":copyright:")
 
 // CONSOLE.LOG CLICKED ITEM
 // then can copy into element.text
