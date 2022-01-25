@@ -297,7 +297,8 @@ console.log('🍄'.length)//2
 console.log('😍'.length)//2
 console.log('😍'.codePointAt(0))//128525 returns codePoint(0)
 console.log('😍'.codePointAt(1))//56845
-
+//TODO add interfaces for polyfills
+//TODO test file, clean app-code
 
 
 
