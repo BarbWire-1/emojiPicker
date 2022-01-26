@@ -52,17 +52,17 @@ console.log(emoji.text)//🍄 `
 //console.log(decodeURIComponent('🍄'))
 
 
-function p2_idx_to_p1_idx (p2_idx, text) {
-  var p1_idx = p2_idx;
-  for (var i = 0; i < text.length && i < p2_idx; i++) {
-      var char_code = text.charCodeAt(i);
-      console.log(char_code.toString(16))//d83d \n dca9
+function getSurrogates (len2, text) {
+  var lenS = len2;
+  for (var i = 0; i < text.length && i < len2; i++) {
+      var charCode = text.charCodeAt(i);
+      console.log(charCode.toString(16))//d83d \n dca9
       // check for the first half of a surrogate pair
-      if (char_code >= 0xD800 && char_code < 0xDC00) {
-          p1_idx -= 1;
+      if (charCode >= 0xD800 && charCode < 0xDC00) {
+          lenS -= 1;
       }
   }
-  return p1_idx;
+  return lenS;
 }
 
 
@@ -87,14 +87,14 @@ console.log(decodeURIComponent('%F0%9F%8D%84'))//������
 
 //'🍄'// this is U+1F344
 console.log('🍄')//������
-p2_idx_to_p1_idx (2, '🍄')//UTF-16 surrogate pairs \ud83c\udf44
+getSurrogates (2, '🍄')//UTF-16 surrogate pairs \ud83c\udf44
 console.log('\u{FEFF}')//(BOM, byte order mark)would be noglyph, if wrong order
 console.log('\u0FEFF\u0D83D\u0DCA9')// ࿯FඃD්9   
 console.log('\u0FEFF\u0DCA9\u0D83D')//࿯F්9ඃD 
 console.log('\uFEFF\uDCA9\uD83D')// ������ //F::: doesn't make a diff between order
 console.log('\uFEFF\uD83D\uDCAD')// ������ 
 //emoji.text = '💩'
-
+console.log(emoji.text)
 
 /// Maybe check my array. I didn't have really converted to hex for >FFFF. IDIOT!!!
 console.log(('\u{d83d}\u{dcad}'))

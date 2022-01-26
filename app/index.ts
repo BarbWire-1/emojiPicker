@@ -34,7 +34,7 @@ let displayHex = (hex: number) => {
 // CONVERSION HEX TO STRING
 // NOT working for >FFFF
 // TODO check out the regex for conversion
-function fixedFromCharCode (codePoint) {
+function stringFromCharCode (codePoint) {
   if (codePoint > 0xFFFF) {
       codePoint -= 0x10000;
       return String.fromCharCode(0xD800 + 
@@ -51,14 +51,14 @@ function fixedFromCharCode (codePoint) {
 function assignEmoji(c: number): void {
   emojiNumber.text = String(c);
   emojiNumber.text = `index: ${c}, (${displayHex(emojisHex[c])})`;
-  emoji.text = fixedFromCharCode(emojisHex[c]);
+  emoji.text = stringFromCharCode(emojisHex[c]);
 }
 
 const assignMulti = (factor: number) :void => {
   // 30 elements, load next 30 on click
   multiview.getElementsByClassName("multi").forEach((el: TextElement) => {
     let index = Number(el.id) + (30 * factor);
-    el.text = fixedFromCharCode(emojisHex[index]);
+    el.text = stringFromCharCode(emojisHex[index]);
   }); 
 }
 
@@ -124,7 +124,7 @@ prevEmoji.onclick = () :void => {
 // currently not in use
 const emo = (key: string) => {
   let i: number = shortKeys.indexOf(key);
-  return fixedFromCharCode(emojisHex[i]);
+  return stringFromCharCode(emojisHex[i]);
 };
 //console.log(emo(":copyright:")); // © 
 
@@ -157,3 +157,32 @@ emoji.onclick = () :void => {
 
 // console.log('𝌆')
 // console.log('\uD834\uDF06')
+
+function getSurrogates (text) {
+  const len = text.length;
+  var lenNew = len;
+  for (var i = 0; i < len && i < lenNew; i++) {
+      var charCode = text.charCodeAt(i);
+      console.log(charCode.toString(16))//d83d \n dca9
+      // check for the first half of a surrogate pair
+      if (charCode >= 0xD800 && charCode < 0xDC00) {
+          lenNew -= 1;
+      }
+  }
+  return lenNew;
+}
+
+//original :mushroom: correct pair
+console.log(getSurrogates("🍄"))// ud83c udf44 - 
+
+//log, when mushroom placed in svg <text>
+console.log(emoji.text)// 🍄`i - 
+
+// log when click on emoji from svg : "ߍ䠣"
+// this varies in the second surrogate for each build
+// but shows mushroom on display!!!
+console.log(getSurrogates("ߍ䠣"))// u7cd u4823
+console.log(getSurrogates("ߍ䰙"))// u7cd u4c19
+console.log(getSurrogates("ߍ䀙"))// u7cd u4019
+
+//emoji.text = ('\u7cd4\u4823') grrr.....
