@@ -10,5 +10,10 @@ const shortKeys =
 [":copyright:", ":registered:"]
 // search index in shortKeys
 //Then format equal index of emojisHex to glyph
-
-export {shortKeys, emojisHex}
+const keyHex = 
+{
+    ":copyright": 0xA9,
+    ":registered:": 0xAE,
+    
+}
+export {keyHex, shortKeys, emojisHex}

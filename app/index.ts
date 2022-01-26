@@ -1,6 +1,6 @@
 
 import document from "document";
-import {emojisHex, shortKeys} from "./fitmoji";
+import {keyHex, emojisHex, shortKeys} from "./fitmoji";
 
 // CONTAINERS
 const buttons = document.getElementById("buttons") as GroupElement;
