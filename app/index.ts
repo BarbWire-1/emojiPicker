@@ -172,7 +172,7 @@ function getSurrogates (len2, text) {
 }
 
 //original :mushroom: correct pair
-console.log(getSurrogates(2,"🍄"))// ud83c udf44 - 
+console.log(`original: ${getSurrogates(2, "🍄")}`)// ud83c udf44 - 
 
 //log, when mushroom placed in svg <text>
 console.log(emoji.text)// 🍄`i - 
@@ -180,8 +180,11 @@ console.log(emoji.text)// 🍄`i -
 // log when click on emoji from svg : "ߍ䠣"
 // this varies in the second surrogate for each build
 // but shows mushroom on display!!!
-console.log(getSurrogates(2,"ߍ䠣"))// u7cd u4823
-console.log(getSurrogates(2,"ߍ䰙"))// u7cd u4c19
-console.log(getSurrogates(2,"ߍ䀙"))// u7cd u4019
+getSurrogates(2,"ߍ䠣")// u7cd u4823
+getSurrogates(2,"ߍ䰙")// u7cd u4c19
+getSurrogates(2,"ߍ䀙")// u7cd u4019
 
 //emoji.text = ('\u7cd4\u4823') grrr.....
+console.log("I \u2661 Javascript") // I ♡ Javascript  not included
+
+
