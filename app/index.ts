@@ -144,7 +144,7 @@ emoji.onclick = () :void => {
 };  
 
 
-
+// add fun to display string from keyHex
 //TODO add 2 buttons for mode, add textfiels for description
 //TODO decide whether to keep different modes
 //TODO check and really understand logic for normalization(s)
