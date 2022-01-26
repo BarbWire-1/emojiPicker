@@ -158,6 +158,11 @@ emoji.onclick = () :void => {
 // console.log('𝌆')
 // console.log('\uD834\uDF06')
 
+//TODO:::::
+// If U is a lead surrogate 16-bit code unit, U is not the last 16-bit code unit of the input, and the next 16-bit code unit of the input next is a trail surrogate 16-bit code unit, then consume next and append to result a code point of value
+// 0x10000 + ((U - 0xD800) << 10) + (next - 0xDC00).
+// is this "appendix" the diff/prob svg/js here???
+
 function getSurrogates (len2, text) {
   var lenS = len2;
   for (var i = 0; i < text.length && i < len2; i++) {
@@ -188,3 +193,17 @@ getSurrogates(2,"ߍ䀙")// u7cd u4019
 console.log("I \u2661 Javascript") // I ♡ Javascript  not included
 
 
+
+
+const insertEmoji = (str)=> {
+  //let str= '';
+  let key = str;
+  let i;
+  if (i< keyHex.length) {
+    
+    keyHex.map((key, value) => ({key: key,value: value}));
+    console.log(stringFromCharCode(str[i]))
+    
+  }
+};
+console.log(insertEmoji(":copyright:"))
