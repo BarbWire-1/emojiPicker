@@ -2,9 +2,13 @@
    <rect id="background" />
     
    <svg id="buttons" y="30">
+   <!--TODO make a symbol textButton, add single/multi-->
       <rect  x="0" y="70%" width="100%" height="100" fill="#f59c2f"/>
-      <text id="viewMode"  x="50%" y="50%+86" text-anchor="middle" font-size="15">click here to switch mode, then use arrays to move</text>
+       <textarea id="viewMode"  x="10%" y="50%+66" width="80%" text-anchor="middle" font-size="15">click here to switch mode, then use arrays to move</textarea>
+      
       <rect id="viewButton" x="0" y="70%" width="100%" height="100" fill="none" pointer-events="visible"/>
+   
+   
       <text id="nextEmoji" x="50%" y="100%-40" text-anchor="start" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">NEX</text>
       <text id="lastEmoji" x="50%" y="100%-40" text-anchor="end" fill="red" font-family="System-Regular" font-size="40" pointer-events="visible">PRE</text>
       
