@@ -3,6 +3,7 @@
     
    <svg id="buttons" y="30">
    <!--TODO make a symbol textButton, add single/multi-->
+   <!--TODO add descriptopn layer on load, rem on click-->
       <rect  x="0" y="70%" width="100%" height="100" fill="#f59c2f"/>
        <textarea id="viewMode"  x="10%" y="50%+66" width="80%" text-anchor="middle" font-size="15">click here to switch mode, then use arrays to move</textarea>
       
