@@ -1,10 +1,6 @@
 
 import document from "document";
 import {emojisHex, shortKeys} from "./fitmoji";
-//import {fixedFromCharCode} from "./polyfills/fixedFromCharCode";
-import "./polyfills/codePointAt";
-import "./polyfills/fromCodePoint";
-//import "./polyfills/unorm"
 
 // CONTAINERS
 const buttons = document.getElementById("buttons") as GroupElement;
@@ -26,11 +22,16 @@ nextEmoji.text = "⏩";
 prevEmoji.text = "⏪";
 
 // FUNCTIONS
-// Formats array text to 0x00000 to display
+// Formats hex to U+(0)0000 to display
 let displayHex = (hex: number) => {
-  return `0x${(`00000${hex.toString(16)}`).slice(-5)}`
+  if (hex <= 0xFFFF){
+    return `U+${(`0000${hex.toString(16)}`).slice(-4).toUpperCase()}`;
+  } else {
+    return `U+${(hex.toString(16)).slice(-4).toUpperCase()}`;
+  }
 };
-
+console.log('𝌆')
+console.log('\uD834\uDF06')
 // CONVERSION HEX TO STRING
 // NOT working for >FFFF
 // TODO check out the regex for conversion

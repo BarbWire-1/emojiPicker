@@ -173,3 +173,14 @@ console.log('😍'.codePointAt(1))//56845
 
 console.log(String.fromCharCode(0x1f600))
 emoji.text = String.fromCharCode(0x1f600)
+
+// hex escape=> eg 0xA9 as string: '\xA9'
+//regex: \\x[a-fA-F0-9]
+
+// unicode (also uses hex) escape '\u000A9'
+// regex: \\u[a-fA-F0-9]{4}
+
+// code point escapes upto 0x10FFFF (highest Unicode value)
+// '𝌆' has code point U+1D306 => '\u{1D306}'
+// OR surrogate pair: '\uD834\uDF06'
+// regex: \\u\{([0-9a-fA-F]{1,})\}
