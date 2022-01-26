@@ -30,8 +30,7 @@ let displayHex = (hex: number) => {
     return `U+${(hex.toString(16)).slice(-4).toUpperCase()}`;
   }
 };
-console.log('𝌆')
-console.log('\uD834\uDF06')
+
 // CONVERSION HEX TO STRING
 // NOT working for >FFFF
 // TODO check out the regex for conversion
@@ -146,7 +145,7 @@ emoji.onclick = () :void => {
 
 
 
-
+//TODO add 2 buttons for mode, add textfiels for description
 //TODO decide whether to keep different modes
 //TODO check and really understand logic for normalization(s)
 //TODO if all the >FFFF doesn't work, go with 0nly <=FFFF!
@@ -156,3 +155,5 @@ emoji.onclick = () :void => {
 // console.log(fixedFromCharCode(0x1f600))//������
 //String.fromCodePoint(0x1f600)//fromCodePoint not defined.... buhuhuuuuuu
 
+// console.log('𝌆')
+// console.log('\uD834\uDF06')
