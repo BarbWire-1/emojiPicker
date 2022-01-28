@@ -250,7 +250,7 @@ var utf8 = decodeURIComponent(encodeURIComponent(str));
   }
   return arr;
 }
-console.log(dunno("🍄")) // 55356,57156 
+console.log(dunno("😍")) // 55357,56845
 
 
 // http://www.onicos.com/staff/iz/amuse/javascript/expert/utf.txt
@@ -463,11 +463,12 @@ console.log(JSON.stringify(decodeURIComponent('\uD83C\uDF44')))//"�����
 console.log("🍄")
 
 
-var str1 = "Hell ö € Ω 𝄞";
+
+//https://qastack.com.de/programming/6226189/how-to-convert-a-string-to-bytearray
 
 const str2Bytes = (str) => {
-  var bytes = [];
-  var charCode;
+  let bytes = [];
+  let charCode;
 
   for (var i = 0; i < str.length; ++i)
   {
@@ -477,14 +478,27 @@ const str2Bytes = (str) => {
   }
   return((bytes.join(' ')))
 }
-console.log(str2Bytes(str1));
-// 0 72 0 101 0 108 0 108 0 32 0 246 0 32 32 172 0 32 3 169 0 32 216 52 221 30
+
+
+console.log(str2Bytes("ABC"));
+// 0 65 0 66 0 67 
 
 console.log(str2Bytes("😍"));
-// 0 72 0 101 0 108 0 108 0 32 0 246 0 32 32 172 0 32 3 169 0 32 216 52 221 30
 // 216 61 222 13
 
-console.log(str2Bytes('\uD83D\uDE0D'))
-//216 61 222 13 
+console.log(str2Bytes('\uD83D\uDE0D'))// codePoint surrogate pair
+// 216 61 222 13 
+
+console.log(str2Bytes(('\uD83D')))// leading
+// 216 61
+
+console.log(str2Bytes('\uDE0D'))// trailing
+// 222 13
+
+
 console.log(str2Bytes('\uDE0D\uD83D'))
 // 222 13 216 61 
+
+
+//in UTF 55357,56845
+//TODO organize all these functions 
