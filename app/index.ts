@@ -350,10 +350,10 @@ for (var i = 0, chr; i < str.length; i++) {
 function getWholeChar(str, i) {
   var code = str.charCodeAt(i);
 
-  //if (Number.isNaN(code)) { // not included
-  // if (code.typeof() != Number) {
-  //   return ''; // Position not found
-  // }
+  if (code.typeof != Number) { // not included
+  
+     return ''; // Position not found
+   }
   if (code < 0xD800 || code > 0xDFFF) {
     return str.charAt(i);
   }
@@ -372,19 +372,24 @@ function getWholeChar(str, i) {
   }
   // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
   if (i === 0) {
-    throw 'Low surrogate without preceding high surrogate';
+    console.error( 'Low surrogate without preceding high surrogate');
   }
   var prev = str.charCodeAt(i - 1);
 
   // (could change last hex to 0xDB7F to treat high private
   // surrogates as single characters)
   if (0xD800 > prev || prev > 0xDBFF) {
-    throw 'Low surrogate without preceding high surrogate';
+    console.error('Low surrogate without preceding high surrogate');
   }
   // We can pass over low surrogates now as the second component
   // in a pair which we have already processed
   return false;
 }
+//console.log(getWholeChar(\u1F60D ,1))//false doesn'accept
+console.log(getWholeChar("😍",2))//Unhandled exception: Low surrogate without preceding high surrogate
+console.log(getWholeChar(('\uD83C\uDF44'),2))//false 
+console.log(getWholeChar(('\uD83C\uDF44'),1))
+
 
 
 function fixedCharAt(str, idx) {
@@ -415,12 +420,12 @@ function fixedCharAt(str, idx) {
   return ret
 }
 console.log(`fixedCharAt: ${fixedCharAt("\uD83C\uDF44", 2)}`)
-
+console.log(`fixedCharAt: ${fixedCharAt("😍", 2)}`)
 
 //FITBIT FS
 import * as fs from "fs";
 //let utf8_data = "JavaScript is da best 😍";
-let utf8_data = "JavaScript is da best \u{D83D}\u{DE0D}";//UTF-8 Data: JavaScript is da best ������
+let utf8_data = "\u{D83D}\u{DE0D}";//UTF-8 Data: JavaScript is da best ������
 fs.writeFileSync("utf8.txt", utf8_data, "utf-8");
 
 
@@ -449,3 +454,37 @@ console.log(JSON.stringify("\ud83c\udf44"))// "������"
 console.log(JSON.stringify(0x1f344))//127812 
 console.log(JSON.stringify("\u1f344"))//"ἴ4" 
 console.log(JSON.stringify(decodeURIComponent('%F0%9F%92%A9')))//"������" 
+//emoji.text = decodeURIComponent('%F0%9F%92%A9') //doesn't show
+//console.log(emoji.text)// nothing
+//emoji.text = JSON.stringify(encodeURIComponent('%F0%9F%92%A9'))
+//console.log(emoji.text)//"%25F0%259 
+
+console.log(JSON.stringify(decodeURIComponent('\uD83C\uDF44')))//"������" 
+console.log("🍄")
+
+
+var str1 = "Hell ö € Ω 𝄞";
+
+const str2Bytes = (str) => {
+  var bytes = [];
+  var charCode;
+
+  for (var i = 0; i < str.length; ++i)
+  {
+      charCode = str.charCodeAt(i);
+      bytes.push((charCode & 0xFF00) >> 8);
+      bytes.push(charCode & 0xFF);
+  }
+  return((bytes.join(' ')))
+}
+console.log(str2Bytes(str1));
+// 0 72 0 101 0 108 0 108 0 32 0 246 0 32 32 172 0 32 3 169 0 32 216 52 221 30
+
+console.log(str2Bytes("😍"));
+// 0 72 0 101 0 108 0 108 0 32 0 246 0 32 32 172 0 32 3 169 0 32 216 52 221 30
+// 216 61 222 13
+
+console.log(str2Bytes('\uD83D\uDE0D'))
+//216 61 222 13 
+console.log(str2Bytes('\uDE0D\uD83D'))
+// 222 13 216 61 
