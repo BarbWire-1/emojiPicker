@@ -476,11 +476,11 @@ const str2Bytes = (str) => {
       bytes.push((charCode & 0xFF00) >> 8);
       bytes.push(charCode & 0xFF);
   }
-  return((bytes.join(' ')))
+  return(bytes.join(' '));
 }
 
-
-console.log(str2Bytes("ABC"));
+let a = str2Bytes("ABC");
+console.log(a);
 // 0 65 0 66 0 67 
 
 console.log(str2Bytes("😍"));
@@ -502,3 +502,12 @@ console.log(str2Bytes('\uDE0D\uD83D'))
 
 //in UTF 55357,56845
 //TODO organize all these functions 
+// get this: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays
+const bytes2String = (b) => {
+  String.fromCharCode.apply(null, b)
+}
+console.log(bytes2String([216, 61, 222, 13,]))// undefined
+console.log(bytes2String([102, 111, 111]))
+
+console.log(String.fromCharCode.apply(null, [102, 111, 111]))// foo
+console.log(('\xF0\x9F\x92\xA9').toString()) // ð© 
