@@ -414,7 +414,7 @@ function fixedCharAt(str, idx) {
   }
   return ret
 }
-console.log(fixedCharAt("🍄",2))
+console.log(`fixedCharAt: ${fixedCharAt("\uD83C\uDF44", 2)}`)
 
 
 //FITBIT FS
@@ -445,4 +445,7 @@ if (stats) {
 //  
 // console.log(normalizeUnicodeText('äÄàÀãÃçÇõÕûÛýÝñ'))
 // // aAaAaAcCoOuUyYn
-
+console.log(JSON.stringify("\ud83c\udf44"))// "������" 
+console.log(JSON.stringify(0x1f344))//127812 
+console.log(JSON.stringify("\u1f344"))//"ἴ4" 
+console.log(JSON.stringify(decodeURIComponent('%F0%9F%92%A9')))//"������" 
