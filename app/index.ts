@@ -1,5 +1,6 @@
 
 import document from "document";
+import { decode } from "jpeg";
 import {keyHex, emojisHex, shortKeys} from "./fitmoji";
 
 // CONTAINERS
@@ -172,12 +173,22 @@ function getSurrogates (len2, text) {
       if (charCode >= 0xD800 && charCode < 0xDC00) {
           lenS -= 1;
       }
+      
   }
   return lenS;
 }
 
+
 //original :mushroom: correct pair
 console.log(`original: ${getSurrogates(2, "🍄")}`)// ud83c udf44 - 
+const appendix = (cP1,cP2) => {
+  let a = 0x10000 + ((cP1 - 0xD800) << 10) + (cP2 - 0xDC00)
+  return a.toString(16)
+}
+
+console.log(appendix(0xd83c, 0xdf44))//1f344
+console.log(String.fromCharCode(Number(appendix(0xd83c, 0xdf44))))//
+
 
 //log, when mushroom placed in svg <text>
 console.log(emoji.text)// 🍄`i - 
@@ -185,7 +196,7 @@ console.log(emoji.text)// 🍄`i -
 // log when click on emoji from svg : "ߍ䠣"
 // this varies in the second surrogate for each build
 // but shows mushroom on display!!!
-console.log(getSurrogates(2,"ߍ䠣"))// u7cd u4823
+console.log(getSurrogates(2,"ߍ䠣"))// u7cd u4823 2!!!
 getSurrogates(2,"ߍ䰙")// u7cd u4c19
 getSurrogates(2,"ߍ䀙")// u7cd u4019
 
@@ -196,3 +207,242 @@ console.log("I \u2661 Javascript") // I ♡ Javascript  not included
 
 // emoji.text=stringFromCharCode(0x7cd)// no glyph
 // emoji.text=stringFromCharCode(0x4019)// no glyph
+
+//https://jonisalonen.com/2012/from-utf-16-to-utf-8-in-javascript/
+function toUTF8Array(str) {
+  var utf8 = [];
+  for (var i=0; i < str.length; i++) {
+      var charcode = str.charCodeAt(i);
+      if (charcode < 0x80) utf8.push(charcode);
+      else if (charcode < 0x800) {
+          utf8.push(0xc0 | (charcode >> 6), 
+                    0x80 | (charcode & 0x3f));
+      }
+      else if (charcode < 0xd800 || charcode >= 0xe000) {
+          utf8.push(0xe0 | (charcode >> 12), 
+                    0x80 | ((charcode>>6) & 0x3f), 
+                    0x80 | (charcode & 0x3f));
+      }
+      // surrogate pair
+      else {
+          i++;
+          // UTF-16 encodes 0x10000-0x10FFFF by
+          // subtracting 0x10000 and splitting the
+          // 20 bits of 0x0-0xFFFFF into two halves
+          charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+                    | (str.charCodeAt(i) & 0x3ff))
+          utf8.push(0xf0 | (charcode >>18), 
+                    0x80 | ((charcode>>12) & 0x3f), 
+                    0x80 | ((charcode>>6) & 0x3f), 
+                    0x80 | (charcode & 0x3f));
+      }
+  }
+  return utf8;
+}
+console.log(toUTF8Array("🍄"))//240,159,141,132
+
+const dunno = (str) => {
+var utf8 = decodeURIComponent(encodeURIComponent(str));
+
+  var arr = [];
+    for (var i = 0; i < utf8.length; i++) {
+      arr.push(utf8.charCodeAt(i));
+  }
+  return arr;
+}
+console.log(dunno("🍄")) // 55356,57156 
+
+
+// http://www.onicos.com/staff/iz/amuse/javascript/expert/utf.txt
+
+/* utf.js - UTF-8 <=> UTF-16 convertion
+ *
+ * Copyright (C) 1999 Masanao Izumo <iz@onicos.co.jp>
+ * Version: 1.0
+ * LastModified: Dec 25 1999
+ * This library is free.  You can redistribute it and/or modify it.
+ */
+
+function Utf8ArrayToStr(array) {
+  var out, i, len, c;
+  var char2, char3;
+
+  out = "";
+  len = array.length;
+  i = 0;
+  while(i < len) {
+  c = array[i++];
+  switch(c >> 4)
+  { 
+    case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+      // 0xxxxxxx
+      out += String.fromCharCode(c);
+      break;
+    case 12: case 13:
+      // 110x xxxx   10xx xxxx
+      char2 = array[i++];
+      out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+      break;
+    case 14:
+      // 1110 xxxx  10xx xxxx  10xx xxxx
+      char2 = array[i++];
+      char3 = array[i++];
+      out += String.fromCharCode(((c & 0x0F) << 12) |
+                     ((char2 & 0x3F) << 6) |
+                     ((char3 & 0x3F) << 0));
+      break;
+  }
+  }
+
+  return out;
+}
+console.log(Utf8ArrayToStr(dunno([240,159,141,132] )))//240,159,141,132
+
+function encode_utf8(s) {
+  return decodeURIComponent(encodeURIComponent(s));
+}
+
+function decode_utf8(s) {
+  return decodeURIComponent(encodeURIComponent(s));
+}
+let encode = encode_utf8('\u1f344')
+let decode2 = decode_utf8(encode)
+
+console.log(encode+" => "+decode2)//ἴ4 => ἴ4 
+
+
+
+
+
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt
+const sentence = 'The quick brown fox jumps over the lazy dog.';
+
+const index = 4;
+
+console.log(`The character at index ${index} is ${sentence.charAt(index)}`);//ok
+// expected output: "The character at index 4 is q"
+
+var anyString = 'Brave new world';
+console.log("The character at index 0   is '" + anyString.charAt(0)   + "'");
+// No index was provided, used 0 as default
+
+console.log("The character at index 0   is '" + anyString.charAt(0)   + "'");
+console.log("The character at index 1   is '" + anyString.charAt(1)   + "'");
+console.log("The character at index 2   is '" + anyString.charAt(2)   + "'");
+console.log("The character at index 3   is '" + anyString.charAt(3)   + "'");
+console.log("The character at index 4   is '" + anyString.charAt(4)   + "'");
+console.log("The character at index 999 is '" + anyString.charAt(999) + "'");//ok
+
+
+var str = 'A \uD87E\uDC04 Z'; // We could also use a non-BMP character directly
+for (var i = 0, chr; i < str.length; i++) {
+  if ((chr = getWholeChar(str, i)) === false) {
+    continue;
+  }
+  // Adapt this line at the top of each loop, passing in the whole string and
+  // the current iteration and returning a variable to represent the
+  // individual character
+
+  console.log("chr: "+chr);//������
+}
+
+function getWholeChar(str, i) {
+  var code = str.charCodeAt(i);
+
+  //if (Number.isNaN(code)) { // not included
+  // if (code.typeof() != Number) {
+  //   return ''; // Position not found
+  // }
+  if (code < 0xD800 || code > 0xDFFF) {
+    return str.charAt(i);
+  }
+
+  // High surrogate (could change last hex to 0xDB7F to treat high private
+  // surrogates as single characters)
+  if (0xD800 <= code && code <= 0xDBFF) {
+    if (str.length <= (i + 1)) {
+      throw 'High surrogate without following low surrogate';
+    }
+    var next = str.charCodeAt(i + 1);
+      if (0xDC00 > next || next > 0xDFFF) {
+        throw 'High surrogate without following low surrogate';
+      }
+      return str.charAt(i) + str.charAt(i + 1);
+  }
+  // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
+  if (i === 0) {
+    throw 'Low surrogate without preceding high surrogate';
+  }
+  var prev = str.charCodeAt(i - 1);
+
+  // (could change last hex to 0xDB7F to treat high private
+  // surrogates as single characters)
+  if (0xD800 > prev || prev > 0xDBFF) {
+    throw 'Low surrogate without preceding high surrogate';
+  }
+  // We can pass over low surrogates now as the second component
+  // in a pair which we have already processed
+  return false;
+}
+
+
+function fixedCharAt(str, idx) {
+  let ret = ''
+  str += ''
+  let end = str.length
+
+  let surrogatePairs = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g
+  while ((surrogatePairs.exec(str)) != null) {
+    let lastIdx = surrogatePairs.lastIndex
+    if (lastIdx - 2 < idx) {
+      idx++
+    } else {
+      break
+    }
+  }
+
+  if (idx >= end || idx < 0) {
+    return ''
+  }
+
+  ret += str.charAt(idx)
+
+  if (/[\uD800-\uDBFF]/.test(ret) && /[\uDC00-\uDFFF]/.test(str.charAt(idx + 1))) {
+    // Go one further, since one of the "characters" is part of a surrogate pair
+    ret += str.charAt(idx + 1)
+  }
+  return ret
+}
+console.log(fixedCharAt("🍄",2))
+
+
+//FITBIT FS
+import * as fs from "fs";
+//let utf8_data = "JavaScript is da best 😍";
+let utf8_data = "JavaScript is da best \u{D83D}\u{DE0D}";//UTF-8 Data: JavaScript is da best ������
+fs.writeFileSync("utf8.txt", utf8_data, "utf-8");
+
+
+let utf8_read = fs.readFileSync("utf8.txt", "utf-8");
+console.log("UTF-8 Data: " + utf8_read); //UTF-8 Data: JavaScript is da best ������
+//emoji.text = utf8_read;// not displayed
+
+
+let stats = fs.statSync("utf8.txt");
+if (stats) {
+  console.log("File size: " + stats.size + " bytes");
+  console.log("Last modified: " + stats.mtime);
+}
+
+
+//IMPORT NOZ WORKING
+// https://www.npmjs.com/package/normalize-unicode-text
+// import { normalizeUnicodeText } from 'normalize-unicode-text'
+//  
+// console.log(normalizeUnicodeText('øqßweŁﬀÆǣ'))
+// // oqssweLffAEae
+//  
+// console.log(normalizeUnicodeText('äÄàÀãÃçÇõÕûÛýÝñ'))
+// // aAaAaAcCoOuUyYn
+

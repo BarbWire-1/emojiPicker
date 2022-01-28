@@ -5,10 +5,12 @@ specifiers:
   '@fitbit/sdk-cli': ^1.7.3
   core-js: 3.20.3
   fitbit-sdk-types: ^7.0.5
+  normalize-unicode-text: ^0.0.1
   uform: ^0.1.9
 
 dependencies:
   core-js: 3.20.3
+  normalize-unicode-text: 0.0.1
   uform: 0.1.9
 
 devDependencies:
@@ -2164,6 +2166,10 @@ packages:
     dependencies:
       remove-trailing-separator: 1.1.0
     dev: true
+
+  /normalize-unicode-text/0.0.1:
+    resolution: {integrity: sha512-zzW9hCazMohI1lf3zWF7k7ecCmL/T2ZaiV7W7ZIjmTmNT0bqNfnsgBfQnudYn8zG1uk7PrPmBXd2CkujehZpDw==}
+    dev: false
 
   /normalize-url/4.5.1:
     resolution: {integrity: sha512-9UZCFRHQdNrfTpGg8+1INIg93B6zE0aXMVFkw1WFwvO4SlZywU6aLg5Of0Ap/PgcbSw4LNxvMWXMeugwMCX0AA==}
