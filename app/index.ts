@@ -385,11 +385,11 @@ function getWholeChar(str, i) {
   // in a pair which we have already processed
   return false;
 }
-//console.log(getWholeChar(\u1F60D ,1))//false doesn'accept
-console.log(getWholeChar("😍",2))//Unhandled exception: Low surrogate without preceding high surrogate
-console.log(getWholeChar(('\uD83C\uDF44'),2))//false 
-console.log(getWholeChar(('\uD83C\uDF44'),1))
-
+//console.log(getWholeChar('\u1F60D' ,2))//false doesn'accept
+console.log("getWholeChar: " + getWholeChar("😍",2))// empty
+console.log(getWholeChar(('\uD83C\uDF44'),2))//empty
+console.log(getWholeChar(('ABC'),3))// empty WTF???
+//this brought other results previously. What happened???
 
 
 function fixedCharAt(str, idx) {
@@ -419,11 +419,14 @@ function fixedCharAt(str, idx) {
   }
   return ret
 }
-console.log(`fixedCharAt: ${fixedCharAt("\uD83C\uDF44", 2)}`)
-console.log(`fixedCharAt: ${fixedCharAt("😍", 2)}`)
+console.log(`fixedCharAt: ${fixedCharAt("\uD83C\uDF44", 1)}`)// no result
+console.log(`fixedCharAt: ${fixedCharAt("😍", 1)}`)// no result
+console.log(`fixedfromCharCode: ${stringFromCharCode("\uD83C\uDF44")}`)
+console.log(`fixedfromCharCode: ${stringFromCharCode("😍")}`)
 
 //FITBIT FS
 import * as fs from "fs";
+import { fixedFromCharCode } from "./polyfills/fixedFromCharCode";
 let utf8_data2 = "Javascript is da best \uD83D\uDE0D. (surrogate pair)"
                   
 
