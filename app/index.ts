@@ -557,3 +557,5 @@ let smiley = "😍"
 //console.log(String.fromCodePoint(smiley)) // not working
 
 //console.log(smiley.codePointAt(0))// not working.
+
+//TODO new file with single modules for function to get overview
