@@ -549,3 +549,8 @@ const hexToBytes = (hex) => {
   return bytes;
 }
 
+// the following seem to be wrong "implemented" don't work
+let smiley = "😍"
+//console.log(String.fromCodePoint(smiley)) // not working
+
+//console.log(smiley.codePointAt(0))// not working.
