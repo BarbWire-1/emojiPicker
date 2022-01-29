@@ -424,9 +424,11 @@ console.log(`fixedCharAt: ${fixedCharAt("😍", 2)}`)
 
 //FITBIT FS
 import * as fs from "fs";
-//let utf8_data = "JavaScript is da best 😍";
-let utf8_data = "\u{D83D}\u{DE0D}";//UTF-8 Data: JavaScript is da best ������
-fs.writeFileSync("utf8.txt", utf8_data, "utf-8");
+let utf8_data2 = "Javascript is da best \uD83D\uDE0D. (surrogate pair)"
+                  
+
+//let utf8_data = "\u{D83D}\u{DE0D}";//UTF-8 Data: JavaScript is da best ������
+fs.writeFileSync("utf8.txt", utf8_data2, "utf-8");
 
 
 let utf8_read = fs.readFileSync("utf8.txt", "utf-8");
@@ -511,3 +513,39 @@ console.log(bytes2String([102, 111, 111]))
 
 console.log(String.fromCharCode.apply(null, [102, 111, 111]))// foo
 console.log(('\xF0\x9F\x92\xA9').toString()) // ð© 
+
+
+//evt. convert everything to binary and interpret from there??????
+
+const stringToUTF8Bytes = (str) => {
+  return encode_utf8(str);
+}
+
+// const stringToUTF16Bytes = (str) => {
+//   const bytes = new Uint8Array(str.length * 2);
+//   //Using DataView is the only way to get a specific
+//   //endianess - oh this might be the prob?
+//   const view = new DataView(bytes.buffer);
+//   for (let i = 0; i !=stringFromCharCode.length; i++){
+//     view.setUint16(i, str.charCodeAt(i), littleEndian);
+//   }
+// }
+
+const bytesToHex = (bytes) => {
+  let array;
+  array =
+    bytes,
+    byte => byte.toString(16).padStart(2, "0")
+  .join("");
+  return array;
+}
+
+const hexToBytes = (hex) => {
+  const bytes = new Uint8Array(hex.length / 2);
+  for (let i = 0; i !== bytes.length; i++) {
+    bytes[i] = parseInt(hex.substr(i * 2,2), 16);
+    
+  }
+  return bytes;
+}
+
