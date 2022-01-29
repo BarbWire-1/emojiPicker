@@ -1,6 +1,5 @@
 
 import document from "document";
-import { decode } from "jpeg";
 import {keyHex, emojisHex, shortKeys} from "./fitmoji";
 
 // CONTAINERS
@@ -559,3 +558,26 @@ let smiley = "😍"
 //console.log(smiley.codePointAt(0))// not working.
 
 //TODO new file with single modules for function to get overview
+
+
+//FITBIT FS
+console.log(emoji.text)
+let mushroom_data = 
+  //"I'm supposed to be a mushroom: 🍄 (copied emoji).,🍄�7 (log emoji), ߍ䂀 (logged click)"
+  //"I'm supposed to be a mushroom: 🍄 (copied emoji).,🍄�7 (log emoji), ߍ䂀 (logged click)"
+  "F09F8D84 🍄 🍄�7 🍄"
+  ;
+//let utf8_data = "\u{D83D}\u{DE0D}";//UTF-8 Data: JavaScript is da best ������
+fs.writeFileSync("mushroom.txt", mushroom_data, "utf-8");
+
+
+let mushroom_read = fs.readFileSync("mushroom.txt", "utf-8");
+console.log("Mushroom Data: " + mushroom_read); //
+
+//emoji.text = "😍😍"
+console.log(emoji.text)
+
+console.log(('\x75\x6E\x69'))//uni (all unicode >FFFF in ttf begin with this)
+console.log('\ud83c\udf44')//������
+emoji.text = ('\ud83c\udf44')
+console.log(emoji.text)// empty
