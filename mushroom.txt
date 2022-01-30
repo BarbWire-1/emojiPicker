@@ -1,1 +1,6 @@
-F09F8D84 🍄 🍄�7 🍄 ߍ䠣
+F09F8D84 🍄 🍄�7 ߍ䠣
+
+This might also be interesting, but don't Know.
+1. Copy of the emoji - U+1F344 
+2. console.log from the emoji displayed from display - U+1F344 U+FFFd U+0037
+3. console.log of emoji.text(svg) in js - U+07CD 

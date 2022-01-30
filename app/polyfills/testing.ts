@@ -89,7 +89,7 @@ console.log(decodeURIComponent('%F0%9F%8D%84'))//������
 console.log('🍄')//������
 getSurrogates (2, '🍄')//UTF-16 surrogate pairs \ud83c\udf44
 console.log('\u{FEFF}')//(BOM, byte order mark)would be noglyph, if wrong order
-console.log('\u0FEFF\u0D83D\u0DCA9')// ࿯FඃD්9   
+console.log('\u{0FEFF}\u{0D83D}\u{0DCA9}')// ࿯FඃD්9   
 console.log('\u0FEFF\u0DCA9\u0D83D')//࿯F්9ඃD 
 console.log('\uFEFF\uDCA9\uD83D')// ������ //F::: doesn't make a diff between order
 console.log('\uFEFF\uD83D\uDCAD')// ������ 

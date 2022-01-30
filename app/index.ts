@@ -179,7 +179,7 @@ function getSurrogates (len2, text) {
 
 
 //original :mushroom: correct pair
-console.log(`original: ${getSurrogates(2, "🍄")}`)// ud83c udf44 - 
+console.log(`original: ${getSurrogates(2, "😍")}`)// d83d //deod
 const appendix = (cP1,cP2) => {
   let a = 0x10000 + ((cP1 - 0xD800) << 10) + (cP2 - 0xDC00)
   return a.toString(16)
@@ -581,3 +581,12 @@ console.log(('\x75\x6E\x69'))//uni (all unicode >FFFF in ttf begin with this)
 console.log('\ud83c\udf44')//������
 emoji.text = ('\ud83c\udf44')
 console.log(emoji.text)// empty
+
+//😍 
+// Unicode U+1F60D
+// surrogate pair \uD83D\uDE0D => '\u{D83D}\u{DE0D}'
+// HEX F0 9F 98 8D => '\xF0\x9F\x98\x8D'
+console.log(encodeURIComponent('\u{D83D}\u{DE0D}')) //%F0%9F%98%8D
+
+console.log('\u{1f60d}'.length)
+console.log(getSurrogates(2,'\u{1F60D}'))//d83d de0d
