@@ -1,4 +1,4 @@
-interface String {
+interface String{
   codePointAt (num): number;
 }
 /*! https://mths.be/codepointat v0.2.0 by @mathias */

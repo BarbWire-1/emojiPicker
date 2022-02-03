@@ -2,6 +2,7 @@
 import document from "document";
 import {keyHex, emojisHex, shortKeys} from "./fitmoji";
 
+
 // CONTAINERS
 const buttons = document.getElementById("buttons") as GroupElement;
 const single = document.getElementById("single") as GroupElement;
@@ -590,3 +591,56 @@ console.log(encodeURIComponent('\u{D83D}\u{DE0D}')) //%F0%9F%98%8D
 
 console.log('\u{1f60d}'.length)
 console.log(getSurrogates(2,'\u{1F60D}'))//d83d de0d
+
+
+
+//TODO:::::
+// If U is a lead surrogate 16-bit code unit, U is not the last 16-bit code unit of the input, and the next 16-bit code unit of the input next is a trail surrogate 16-bit code unit, then consume next and append to result a code point of value
+// 0x10000 + ((U - 0xD800) << 10) + (next - 0xDC00).
+// is this "appendix" the diff/prob svg/js here???
+
+function getSurrogates2 (str) {
+  const len = str.length;
+  let lenS = len;
+  let surrogatePair = [];
+  for (var i = 0; i < str.length && i < len; i++) {
+      var charCode = str.charCodeAt(i);
+      surrogatePair.push(charCode.toString(16));
+      //@ts-ignore
+      
+      
+      // check for the first half of a surrogate pair
+      if (charCode >= 0xD800 && charCode < 0xDC00) {
+          lenS -= 1;
+      }
+      
+      
+  }
+  const surrForm = surrogatePair.map(format).join('')
+
+  function format(item) {
+    return '\\u{' + item + '}';
+  }
+  //@ts-ignore
+  let surrPairForm= (item) => surrogatePair.map("\\u{"+ item +"}").join('');
+  console.log(surrForm)
+  return { lenS}
+}
+console.log(getSurrogates2('\u{1F60D}'))
+
+
+
+// If U is a lead surrogate 16-bit code unit, U is not the last 16-bit code unit of the input, and the next 16-bit code unit of the input next is a trail surrogate 16-bit code unit, then consume next and append to result a code point of value
+// 0x10000 + ((U - 0xD800) << 10) + (next - 0xDC00).
+// is this "appendix" the diff/prob svg/js here???
+
+//😍 
+// Unicode U+1F60D
+// surrogate pair \uD83D\uDE0D => '\u{D83D}\u{DE0D}'
+// HEX F0 9F 98 8D => '\xF0\x9F\x98\x8D'
+let first = 0xd83d;
+let second =  0xde0d
+let result = [];
+
+let test = 0x10000 + ((0x1f60D - 0xD800) << 10) + (second - 0xDC00)
+console.log(test.toString(16)) //0x479360D WTF???
