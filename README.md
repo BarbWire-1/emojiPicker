@@ -15,5 +15,5 @@ Little file to show the currently available emojis (from fitmoji.ttf) on fitbit-
 ![single view](singleView.png)
 
 ## multi-view
-![multi view](multiView.png)
+![multi view](multiview.png)
 
