@@ -7,3 +7,13 @@ Little file to show the currently available emojis (from fitmoji.ttf) on fitbit-
 * multi shows 30 emojis per page
 * 169 BMP chars working
 * if you click an emoji, it gets console.logged to the terminal so you could copy it into your text from there.
+
+## single-view
+
+
+
+![single view](singleView.png)
+
+## multi-view
+![multi view](multiView.png)
+
